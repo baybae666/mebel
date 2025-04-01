@@ -1,0 +1,8 @@
+export const HOMEROUTER = '/'
+export const CATALOGROUTER = '/catalog'
+export const PRODUCTROUTER = '/catalog'
+export const ABOUTROUTER = '/about'
+export const  CONTACTROUTER= '/contact'
+export const  LOGINROUTER= '/login'
+export const  REGISTERROUTER= '/register'
+export const  CARTROUTER= '/cart'

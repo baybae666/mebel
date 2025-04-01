@@ -1,0 +1,73 @@
+.footer {
+    font-family: "Montserrat", sans-serif;
+    background: rgba(147, 148, 151, 1);;
+}
+
+.footer_info_text {
+    color: #054C73;
+    font-size: 1rem;
+    border-bottom: 1px solid #054C73;
+    font-weight: bold;
+}
+
+.footer_link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 0.875rem; /* 14px */
+    transition: color 0.3s;
+}
+
+.footer_link:hover {
+    color: #00bcd4;
+}
+
+.footer_contact_item {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+.logo {
+    width: 200px;
+    height: 50px;
+    background-image: url("../assets/logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .footer_info_box {
+        flex-wrap: wrap;
+    }
+
+    .footer_section {
+        width: 100%; /* Занимают всю ширину на среднем экране */
+    }
+}
+
+@media (max-width: 768px) {
+    .footer_container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer_logo {
+        margin-bottom: 1rem;
+    }
+
+    .footer_section {
+        text-align: center;
+    }
+
+    .footer_contact_item {
+        justify-content: center;
+    }
+}

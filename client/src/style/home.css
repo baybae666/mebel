@@ -1,0 +1,10 @@
+.home_header {
+    width: 100vw;
+    height: 80vh;
+    max-height: 702px;
+    background-image: url("../assets/homebg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+

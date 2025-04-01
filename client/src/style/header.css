@@ -1,0 +1,115 @@
+/* Глобальные размеры */
+.header {
+    font-family: "Montserrat", sans-serif;
+}
+
+.locationIcon {
+    min-width: 15px;
+    min-height: 19px;
+    background-image: url("../assets/location.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+    max-width: 336px;
+    max-height: 64px;
+    background-image: url("../assets/logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.navbar {
+    background: rgba(147, 148, 151, 1);
+}
+
+.nav {
+    font-size: 1rem;
+    line-height: 20px;
+}
+
+/* Кнопки */
+.basket_btn,
+.person_btn,
+.logout_btn {
+    width: 3vw;
+    height: 3vw;
+    max-width: 40px;
+    max-height: 40px;
+    min-width: 30px;
+    min-height: 30px;
+    background: #fff;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.basket_btn {
+    background-image: url("../assets/basket.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.person_btn {
+    background-image: url("../assets/person.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.logout_btn {
+    background-image: url("../assets/logout.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .navbar_box {
+        flex-direction: row;
+    }
+
+    .logo {
+        max-width: 250px;
+        max-height: 50px;
+    }
+
+    .basket_btn,
+    .person_btn,
+    .logout_btn {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav {
+        display: none; /* Прячем навигацию */
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
+
+@media (max-width: 480px) {
+    .locationIcon {
+        min-width: 12px;
+        min-height: 15px;
+    }
+
+    .logo {
+        max-width: 180px;
+        max-height: 40px;
+    }
+
+    .basket_btn,
+    .person_btn,
+    .logout_btn {
+        width: 25px;
+        height: 25px;
+    }
+}
