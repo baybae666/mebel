@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import FacadeStore from "./Store/FacadeStore";
 import UserStore from "./Store/UserStore";
 import CartStore from "./Store/CartStore";
+import OrderStore from "./Store/OrderStore";
+import OrderDetailsStore from "./Store/OrderDetailsStore";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -15,7 +17,9 @@ root.render(
   <Context.Provider value={{
       facadeStore: new FacadeStore(),
       userStore: new UserStore(),
-      cartStore: new CartStore()
+      cartStore: new CartStore(),
+      orderStore: new OrderStore(),
+      orderDetailStore: new OrderDetailsStore(),
   }}>
     <App />
   </Context.Provider>

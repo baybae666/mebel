@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 
-const Notification = ({ message, duration = 3000 }) => {
+const Notification = ({ message, duration = 3000, offShow }) => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
         setIsVisible(true); // Показываем уведомление
-        const timer = setTimeout(() => setIsVisible(false), duration); // Скрываем через duration
+        const timer = setTimeout(() => {
+            offShow()
+            setIsVisible(false)
+        }, duration); // Скрываем через duration
 
         return () => clearTimeout(timer); // Очищаем таймер при размонтировании
     }, [duration]);

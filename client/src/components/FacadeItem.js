@@ -8,7 +8,7 @@ const FacadeItem = ({ facade }) => {
     const navigate = useNavigate();
     const { cartStore } = useContext(Context);
     const [showNotification, setShowNotification] = useState(false);
-
+    const offNotification = () => setShowNotification(false)
     const navigateToProduct = () => navigate(PRODUCTROUTER + "/" + facade.FacadeID);
 
     const handleAddToCart = () => {
@@ -69,6 +69,7 @@ const FacadeItem = ({ facade }) => {
                 <Notification
                     message="Товар добавлен в корзину"
                     duration={3000}
+                    offShow={offNotification}
                 />
             )}
         </div>

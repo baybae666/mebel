@@ -45,6 +45,10 @@ class FacadeController {
         }
     }
 
+    async getFacadeByIdsFromBack(ids) {
+        return await Facade.findAll({ where: { FacadeID: ids } })
+    }
+
     // Получение информации о соискателе по userId
     async getFacade(req, res) {
         try {

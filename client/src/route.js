@@ -3,8 +3,8 @@ import {
     CATALOGROUTER,
     CONTACTROUTER,
     HOMEROUTER,
-    LOGINROUTER,
-    PRODUCTROUTER,
+    LOGINROUTER, ORDERCONFIRMROUTER, ORDERLISTROUTER,
+    PRODUCTROUTER, PROFILEROUTER,
     REGISTERROUTER
 } from "./utils/consts";
 import Home from "./pages/Home";
@@ -14,6 +14,9 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
 import Cart from "./pages/Cart";
+import OrderConfirm from "./pages/OrderConfirm";
+import OrderList from "./pages/OrderList";
+import Profile from "./pages/Profile";
 
 export const publicRoutes = [
     {
@@ -47,5 +50,20 @@ export const publicRoutes = [
     {
         path: CARTROUTER,
         element: <Cart />
+    }
+]
+
+export const authRoutes = [
+    {
+        path: ORDERCONFIRMROUTER,
+        element: <OrderConfirm />
+    },
+    {
+        path: PROFILEROUTER + '/:section',
+        element: <Profile />
+    },
+    {
+        path: PROFILEROUTER + '/:section',
+        element: <Profile />
     }
 ]

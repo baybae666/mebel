@@ -93,11 +93,51 @@ export default class UserStore {
     async checkAuth() {
         try {
             const response = await axios.get(`${process.env.REACT_APP_API_URL}api/user/refresh`, { withCredentials: true })
-            localStorage.setItem('token', response.data.accessToken);
+            localStorage.setItem('accessToken', response.data.tokens.accessToken);
             this.setAuth(true)
             this.setUser(response.data.user)
         } catch (e) {
+            await this.logout()
             console.log(e.response?.data?.message)
+        }
+    }
+
+    async updateName(id, name){
+        try {
+            const {data} = await UserService.updateName(id, name)
+            this.setUser(data.user)
+            return true
+        } catch (e) {
+            return e
+        }
+    }
+
+    async updateEmail(id, email){
+        try {
+            const {data} = await UserService.updateEmail(id, email)
+            this.setUser(data.user)
+            return true
+        } catch (e) {
+            return e
+        }
+    }
+
+    async updatePhone(id, phone){
+        try {
+            const {data} = await UserService.updatePhone(id, phone)
+            this.setUser(data.user)
+            return true
+        } catch (e) {
+            return e
+        }
+    }
+
+    async updatePassword(id, password, newPassword){
+        try {
+            const {data} = await UserService.updatePassword(id, password, newPassword)
+            return true
+        } catch (e) {
+            throw e
         }
     }
 }

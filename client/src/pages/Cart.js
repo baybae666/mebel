@@ -2,11 +2,12 @@ import React, {useContext, useEffect} from "react";
 import { observer } from "mobx-react-lite";
 import CartItem from "../components/CartItem";
 import {Context} from "../index";
-import {NavLink} from "react-router-dom";
-import {CATALOGROUTER} from "../utils/consts";
+import {Link, NavLink, useNavigate} from "react-router-dom";
+import {CATALOGROUTER, LOGINROUTER, ORDERCONFIRMROUTER} from "../utils/consts";
 
 const Cart = observer(() => {
-    const {cartStore } = useContext(Context);
+    const {cartStore, userStore, orderStore } = useContext(Context);
+    const navigate = useNavigate()
 
     useEffect(() => {
         cartStore.fetchCart();
@@ -27,14 +28,14 @@ const Cart = observer(() => {
     };
 
     // Функция для оформления заказа
-    const handleCheckout = () => {
-        alert('Рано')
-        // Логика отправки заказа на сервер
+    const handleCheckout = async () => {
+        await orderStore.createOrder(userStore.user.id, Date.now(), 'Не оформлен', cartStore.totalPrice, cartStore.cartId).then(res => {
+            navigate(ORDERCONFIRMROUTER)
+        }).catch(rej => alert(rej))
     };
 
-
-    if (cartStore.error) {
-        return <p className="text-center text-red-500">{cartStore.error}</p>;
+    if (!userStore.isAuth) {
+        return <div className="underline flex justify-center text-2xl items-center flex-1 text-red-500 mx-auto h-[67vh] w-4/5"><Link to={LOGINROUTER}>Авторизуйтесь чтобы посмотреть корзину</Link> </div>;
     }
 
     return (

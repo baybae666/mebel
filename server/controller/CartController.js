@@ -33,6 +33,7 @@ class CartController {
             return res.json({
                 items: cartDetails,
                 totalPrice: cart.TotalPrice,
+                cartId: cart.CartID
             });
         } catch (e) {
             next(ApiError.internal(e.message));

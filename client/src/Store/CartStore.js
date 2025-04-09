@@ -6,6 +6,7 @@ export default class CartStore {
     _totalPrice = 0;
     _isLoading = false;
     _error = null;
+    _cartId = null;
 
     constructor() {
         makeAutoObservable(this);
@@ -14,6 +15,10 @@ export default class CartStore {
     // Сеттеры и геттеры
     setCart(cart) {
         this._cart = cart;
+    }
+
+    setCartId(id) {
+        this._cartId = id;
     }
 
     setTotalPrice(price) {
@@ -30,6 +35,10 @@ export default class CartStore {
 
     get cart() {
         return this._cart;
+    }
+
+    get cartId() {
+        return this._cartId;
     }
 
     get totalPrice() {
@@ -49,9 +58,10 @@ export default class CartStore {
         this.setLoading(true);
         this.setError(null);
         try {
-            const { items, totalPrice } = await CartService.getCart();
+            const { items, totalPrice, cartId } = await CartService.getCart();
             this.setCart(items || []);
             this.setTotalPrice(totalPrice || 0);
+            this.setCartId(cartId)
         } catch (error) {
             this.setError(error.message);
         } finally {

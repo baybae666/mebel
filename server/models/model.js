@@ -24,7 +24,7 @@ const Order = sequelize.define('Order', {
     OrderID: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     UserID: { type: DataTypes.INTEGER, allowNull: false },
     OrderDate: { type: DataTypes.DATE, allowNull: false, defaultValue: DataTypes.NOW },
-    OrderStatus: { type: DataTypes.STRING(20), allowNull: false, defaultValue: "Pending" },
+    OrderStatus: { type: DataTypes.STRING(20), allowNull: false, defaultValue: "Не оформлен" },
     TotalPrice: { type: DataTypes.FLOAT, allowNull: false },
 });
 

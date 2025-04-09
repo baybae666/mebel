@@ -1,25 +1,35 @@
 import React, {useState, useEffect, useContext} from 'react';
 import '../style/header.css';
-import { NavLink } from 'react-router-dom';
-import {ABOUTROUTER, CARTROUTER, CATALOGROUTER, CONTACTROUTER, HOMEROUTER, LOGINROUTER} from '../utils/consts';
+import {NavLink, useNavigate} from 'react-router-dom';
+import {
+    ABOUTROUTER,
+    CARTROUTER,
+    CATALOGROUTER,
+    CONTACTROUTER,
+    HOMEROUTER,
+    LOGINROUTER,
+    PROFILEROUTER
+} from '../utils/consts';
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const { userStore } = useContext(Context); // используем UserStore
-
+    const navigation = useNavigate()
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     };
 
     const handleLogout = async () => {
-        await userStore.logout(); // вызываем метод logout при нажатии
+        await userStore.logout();
+        navigation(HOMEROUTER)
+
     };
 
-    useEffect(() => {
-        userStore.checkAuth(); // проверка авторизации при монтировании компонента
-    }, [userStore]);
+    // useEffect(() => {
+    //     userStore.checkAuth(); // проверка авторизации при монтировании компонента
+    // }, [userStore]);
 
     return (
         <div className="header w-screen max-h-40 h-32 flex flex-col">
@@ -66,7 +76,7 @@ const Header = () => {
 
                         {userStore.isAuth ? (
                             <>
-                                <button className="person_btn hidden sm:inline"></button>
+                                <NavLink to={PROFILEROUTER + '/lk'}><button className="person_btn hidden sm:inline"></button></NavLink>
                                 <button className="logout_btn hidden sm:inline" onClick={handleLogout}></button>
                             </>
 

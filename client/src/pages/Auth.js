@@ -24,13 +24,13 @@ const Auth = observer(() => {
 
     const handleSubmit = async () => {
         if (isLogin) {
-            await userStore.login(phone, password); // Вход
+            await userStore.login(phone, password).then(null, rej => alert(rej) ) // Вход
         } else {
             if (password !== passwordRecove) {
                 alert("Пароли не совпадают!");
                 return;
             }
-            await userStore.register(name, email, phone, password); // Регистрация
+            await userStore.register(name, email, phone, password).then(null, rej => alert(rej) ); // Регистрация
         }
 
         if (userStore.isAuth) {

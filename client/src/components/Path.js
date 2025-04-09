@@ -17,7 +17,11 @@ const Path = () => {
         contact: 'Контакты',
         login: 'Вход',
         register: 'Регистрация',
-        cart: 'Корзина'
+        cart: 'Корзина',
+        profile: 'Личный кабинет',
+        lk: 'Личные данные',
+        orders: 'Мои заказы',
+        orderconfirm: 'Оформлние заказа'
     };
 
     return (
