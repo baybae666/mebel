@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {ORDERLISTROUTER, PROFILEROUTER} from "../utils/consts";
 import PersonalData from "../components/PersonalData";
@@ -6,12 +6,28 @@ import OrderList from "./OrderList";
 import OrdersIcon from "../components/OrdersIcon";
 import UserIcon from "../components/UserIcon";
 import {observer} from "mobx-react-lite";
+import UserList from "../components/UserList";
+import {Context} from "../index";
+import UsersListIcon from "../components/UsersListIcon";
 
 const Profile = () => {
+    const {userStore} = useContext(Context)
     const {section} = useParams()
-    const [currentTab, setCurrentTab] = useState(true)
+    const [currentTab, setCurrentTab] = useState('lk')
     const navigation = useNavigate()
-    const checkTab = () => section === 'orders' ? setCurrentTab(false) : setCurrentTab(true)
+
+
+    const checkTab = () => {
+        if (section === 'lk') {
+            setCurrentTab('lk')
+        }
+        if (section === 'orders') {
+            setCurrentTab('orders')
+        }
+        if (section === 'users') {
+            setCurrentTab('users')
+        }
+    }
 
     useEffect(() => {
         checkTab()
@@ -28,7 +44,7 @@ const Profile = () => {
                                 navigation(PROFILEROUTER + '/lk')
                             }}
                             className={`p-4 rounded-xl cursor-pointer transition-all flex items-center ${
-                                currentTab
+                                currentTab === 'lk'
                                     ? 'bg-white shadow-md border-2 border-[#054C73] text-[#054C73]'
                                     : 'bg-white hover:bg-gray-50 border border-gray-200'
                             }`}
@@ -36,10 +52,25 @@ const Profile = () => {
                             <UserIcon className='w-5 h-5 me-2'/>
                             <span className="font-medium">Личные данные</span>
                         </div>
-                        <div
-                            onClick={() => navigation(PROFILEROUTER + '/orders')}
+
+                        {userStore.user.isAdmin && <div
+                            onClick={() => {
+                                navigation(PROFILEROUTER + '/users')
+                            }}
                             className={`p-4 rounded-xl cursor-pointer transition-all flex items-center ${
-                                !currentTab
+                                currentTab === 'users'
+                                    ? 'bg-white shadow-md border-2 border-[#054C73] text-[#054C73]'
+                                    : 'bg-white hover:bg-gray-50 border border-gray-200'
+                            }`}
+                        >
+                            <UsersListIcon className="w-5 h-5 me-2" />
+                            <span className="font-medium">Пользователи</span>
+                        </div>}
+
+                        <div
+                            onClick={() => navigation(PROFILEROUTER + '/orders' + '/' + userStore.user.id)}
+                            className={`p-4 rounded-xl cursor-pointer transition-all flex items-center ${
+                                currentTab === 'orders'
                                     ? 'bg-white shadow-md border-2 border-[#054C73] text-[#054C73]'
                                     : 'bg-white hover:bg-gray-50 border border-gray-200'
                             }`}
@@ -50,7 +81,7 @@ const Profile = () => {
                     </div>
 
                     <div className="flex-1 bg-white rounded-xl shadow-sm p-6 md:p-8">
-                        {currentTab ? <PersonalData/> : <OrderList/>}
+                        {currentTab === 'lk' ? <PersonalData/> : currentTab === 'orders' ? <OrderList/> : <UserList/>}
                     </div>
                 </div>
             </div>

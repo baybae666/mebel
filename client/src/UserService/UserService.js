@@ -9,12 +9,20 @@ const UserService = {
         return new Promise(resolve => resolve($authHost.post('/api/user/login', {Phone, PasswordHash})));
     },
 
+    async sentCode(phone, email) {
+        return new Promise(resolve => resolve($authHost.post('/api/user/sentCode', {phone, email})));
+    },
+
     async logout() {
         return new Promise(resolve => resolve($authHost.post('/api/user/logout')));
     },
 
     async checkAuth() {
         return new Promise(resolve => resolve($authHost.get('/api/user/check')));
+    },
+
+    async getAllusers() {
+        return new Promise(resolve => resolve($authHost.get('/api/user/getAllUsers')));
     },
 
     async updateName(id, name) {
@@ -29,8 +37,8 @@ const UserService = {
         return await $authHost.put('/api/user/changePhoneByUserId', {id, phone})
     },
 
-    async updatePassword(id, password, newPassword) {
-        return await $authHost.put('/api/user/changePasswordByUserId', {id, password, newPassword})
+    async updatePassword(id, password, code) {
+        return await $authHost.put('/api/user/changePasswordByUserId', {id, password, code})
     },
 
     async refresh() {

@@ -21,7 +21,8 @@ const Path = () => {
         profile: 'Личный кабинет',
         lk: 'Личные данные',
         orders: 'Мои заказы',
-        orderconfirm: 'Оформлние заказа'
+        orderconfirm: 'Оформлние заказа',
+        users: 'Пользователи'
     };
 
     return (

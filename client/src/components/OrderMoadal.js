@@ -4,11 +4,11 @@ import {PROFILEROUTER} from "../utils/consts";
 import {useNavigate} from "react-router-dom";
 
 const OrderMoadal = ({onClose, id}) => {
-    const {orderStore} = useContext(Context)
+    const {orderStore, userStore} = useContext(Context)
     const navigate = useNavigate()
     const updateStatus = async () => {
         await orderStore.updateStatus(id, 'Оформлен').then(res => {
-            navigate(PROFILEROUTER + '/orders');
+            navigate(PROFILEROUTER + '/orders' + '/' + userStore.user.id);
         })
     }
     return (

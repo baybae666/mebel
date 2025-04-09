@@ -7,6 +7,8 @@ export default class UserStore {
     _isAuth = false; // Авторизован ли пользователь
     _error = null; // Ошибка
     _isLoading = false; // Состояние загрузки
+    _users = [];
+    pickUserId = null
 
     constructor() {
         makeAutoObservable(this);
@@ -15,6 +17,14 @@ export default class UserStore {
     // Сеттеры и геттеры
     setUser(user) {
         this._user = user;
+    }
+
+    setUsers(users) {
+        this._users = users;
+    }
+
+    onpPickUserId(user) {
+        this.pickUserId = user;
     }
 
     setAuth(isAuth) {
@@ -31,6 +41,10 @@ export default class UserStore {
 
     get user() {
         return this._user;
+    }
+
+    get users() {
+        return this._users;
     }
 
     get isAuth() {
@@ -102,6 +116,16 @@ export default class UserStore {
         }
     }
 
+    async getAll(){
+        try {
+            const {data} = await UserService.getAllusers()
+            this.setUsers(data.users)
+            return data
+        } catch (e) {
+            return e
+        }
+    }
+
     async updateName(id, name){
         try {
             const {data} = await UserService.updateName(id, name)
@@ -132,9 +156,18 @@ export default class UserStore {
         }
     }
 
-    async updatePassword(id, password, newPassword){
+    async updatePassword(id, password, code){
         try {
-            const {data} = await UserService.updatePassword(id, password, newPassword)
+            const {data} = await UserService.updatePassword(id, password, code)
+            return true
+        } catch (e) {
+            throw e
+        }
+    }
+
+    async sentCode(Phone, email){
+        try {
+            const {data} = await UserService.sentCode(Phone, email)
             return true
         } catch (e) {
             throw e

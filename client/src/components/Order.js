@@ -2,19 +2,17 @@ import React, {useContext, useState} from 'react';
 import OrderDetailList from "./OrderDetailList";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
-import {useNavigate} from "react-router-dom";
-import {ORDERLISTROUTER, PROFILEROUTER} from "../utils/consts";
-import CheckCircleIcon from "./CheckCircleIcon";
 import ArrowRightIcon from "./ArrowRightIcon";
 import MailIcon from "./MailIcon";
 import PhoneIcon from "./PhoneIcon";
 import UserIcon from "./UserIcon";
-import OrderMoadal from "./OrderMoadal";
+import CancelIcon from "./CancelIcon";
 
 const Order = ({order}) => {
     const {orderStore, userStore} = useContext(Context)
-    const navigate = useNavigate()
-
+    const updateStatus = async () => {
+        await orderStore.updateStatus(order.OrderID, 'Не оформлен')
+    }
     return (
         <div className="bg-white  p-6 md:p-8 mx-auto max-w-4xl ">
             {/* Шапка заказа */}
@@ -83,15 +81,24 @@ const Order = ({order}) => {
                     >
                         <ArrowRightIcon className="w-5 h-5"/>
                         Оформить заказ
-                    </button> :
-                    <a  href='tel:89111111111'
-                        className="px-6 py-3 bg-[#054C73] hover:bg-[#033952] text-white rounded-xl font-medium transition-all flex items-center gap-2 hover:shadow-md"
-                    >
-                        <PhoneIcon className="w-5 h-5"/>
-                        Связаться с нами
-                    </a>
+                    </button> : userStore.user.isAdmin ?
+                        <button
+                            onClick={updateStatus}
+                            className="px-6 py-3 bg-[#054C73] hover:bg-[#033952] text-white rounded-xl font-medium transition-all flex items-center gap-2 hover:shadow-md"
+                        >
+                            <CancelIcon className="w-5 h-5" />
+                            Отменить оформление
+                        </button> :
+
+                        <a href='tel:89111111111'
+                           className="px-6 py-3 bg-[#054C73] hover:bg-[#033952] text-white rounded-xl font-medium transition-all flex items-center gap-2 hover:shadow-md"
+                        >
+                            <PhoneIcon className="w-5 h-5"/>
+                            Связаться с нами
+                        </a>
                 }
             </div>
+
         </div>
     );
 };

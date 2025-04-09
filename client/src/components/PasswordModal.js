@@ -6,7 +6,7 @@ import {observer} from "mobx-react-lite";
 
 const PasswordModal = ({ onClose, onShowNotification }) => {
     const { userStore } = useContext(Context);
-    const [currentPwd, setCurrentPwd] = useState('');
+    const [code, setCode] = useState('');
     const [newPwd, setNewPwd] = useState('');
     const [newPwdCheck, setNewPwdCheck] = useState('');
     const [error, setError] = useState('');
@@ -17,13 +17,18 @@ const PasswordModal = ({ onClose, onShowNotification }) => {
         return () => window.removeEventListener('keydown', handleEsc);
     }, []);
 
+    const sentCode = async () => {
+        await userStore.sentCode(userStore.user.phone, userStore.user.email)
+    }
+
+
     const updatePassword = async () => {
         if (newPwd !== newPwdCheck) {
             return setError('Пароли не совпадают');
         }
 
         await userStore.updatePassword(
-            userStore.user.id, currentPwd, newPwd)
+            userStore.user.id, newPwd, code)
             .then(res => {
                 onShowNotification()
                 onClose();
@@ -53,18 +58,20 @@ const PasswordModal = ({ onClose, onShowNotification }) => {
                 <div className="space-y-4">
                     <div>
                         <label className="block text-sm text-gray-600 mb-2">
-                            Текущий пароль
+                            Проверочный код
                         </label>
                         <input
-                            type="password"
-                            value={currentPwd}
+                            type="text"
+                            value={code}
                             onChange={(e) => {
-                                setCurrentPwd(e.target.value);
+                                setCode(e.target.value);
                                 setError('');
                             }}
                             className="w-full px-4 py-3 rounded-xl border border-gray-200
                                      focus:ring-2 focus:ring-[#054C73] focus:border-transparent"
                         />
+                        <button onClick={sentCode} className='w-full bg-[#054C73] hover:bg-[#033952] text-white
+                                 py-3 rounded-xl font-medium transition-colors mt-4'>Отправить код</button>
                     </div>
 
                     <div className="space-y-2">
@@ -103,8 +110,8 @@ const PasswordModal = ({ onClose, onShowNotification }) => {
 
                     <button
                         onClick={updatePassword}
-                        className="w-full bg-[#054C73] hover:bg-[#033952] text-white
-                                 py-3 rounded-xl font-medium transition-colors mt-4"
+                        className={`w-full bg-[#054C73] text-white
+                            py-3 rounded-xl font-medium transition-colors mt-4 hover:bg-[#033952]`}
                     >
                         Сменить пароль
                     </button>

@@ -59,6 +59,10 @@ export const authRoutes = [
         element: <OrderConfirm />
     },
     {
+        path: PROFILEROUTER + '/:section/:id',
+        element: <Profile />
+    },
+    {
         path: PROFILEROUTER + '/:section',
         element: <Profile />
     },
@@ -67,3 +71,4 @@ export const authRoutes = [
         element: <Profile />
     }
 ]
+

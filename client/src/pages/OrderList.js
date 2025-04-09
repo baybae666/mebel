@@ -4,16 +4,18 @@ import Order from "../components/Order";
 import {observer} from "mobx-react-lite";
 import OrderItem from "../components/OrderItem";
 import OrderMoadal from "../components/OrderMoadal";
+import {useParams} from "react-router-dom";
 
 const OrderList = () => {
     const {orderStore, userStore, orderDetailStore} = useContext(Context)
+    const {id} = useParams()
     const [expandedOrderId, setExpandedOrderId] = useState(null);
     const [orders, setOrders] = useState([])
     const [isStatusUpdate, setIsStatusUpdate] = useState(false)
 
     const onStatusUpdate = () => setIsStatusUpdate(true)
     const getOrders = async () => {
-        await orderStore.getOrderByUserId(userStore.user.id).then(res => setOrders(res))
+        await orderStore.getOrderByUserId(id).then(res => setOrders(res))
     }
 
     const toggleOrder = (orderId) => {

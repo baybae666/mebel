@@ -2,9 +2,89 @@ const { User, Order} = require('../models/model');
 const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt');
 const tokenService = require('../services/tokenService'); // Создать tokenService
-const { validationResult } = require('express-validator'); // Используйте для валидации
+const { validationResult } = require('express-validator');
+const nodemailer = require('nodemailer')
+let checkCode = null
+const axios = require('axios')
+class smsController {
+    transporter = nodemailer.createTransport({
+        service: 'yandex',
+        auth: {
+            user: 'xxxioan@yandex.com',
+            pass: 'VertuHA47'
+        }
+    })
 
+
+    generateCode = (length) => {
+        let result = ''
+        const characters = '0123456789'
+        const charactersLength = characters.length;
+        let counter = 0;
+        while (counter < length) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            counter += 1;
+        }
+        return result;
+    }
+
+    async sendCode (phone) {
+        try {
+            const sentCode = axios.post('https://gatewayapi.telegram.org/sendVerificationMessage', {phone_number: phone, code_length: 6}, {
+                headers: {
+                    Authorization: `Bearer AAFsFQAAVzs17ojLBejh2-lyOB19Yrcs88D9oso_wxVjQQ`
+                }
+            }).then(res => console.log(res))
+
+        } catch (e) {
+            console.log(e)
+        }
+    }
+}
+
+const smsActions = new smsController()
 class UserController {
+    async sendCodeFromUser(req, res, next) {
+        try {
+            const { phone, email } = req.body
+
+            const user = await User.findOne({where:{Phone: phone}})
+
+            if (!phone || !user) {
+                return next(ApiError.badRequest('Некорректный номер телефона'))
+            }
+
+            const code = smsActions.generateCode(5)
+            // await smsActions.sendCode(phone)
+            checkCode = code
+
+            return res.json({ code: code })
+
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async changePassword(req, res, next) {
+        try {
+            const {id, code, password} = req.body
+            if (checkCode === code) {
+                const user = await User.findOne({ where: { UserID: id } });
+
+                const hashedPassword = await bcrypt.hash(password, 10);
+
+                const updated = await User.update({ PasswordHash: hashedPassword }, { where: { UserID: id } })
+
+                return res.json({status: true})
+            }
+            throw ApiError.badRequest('Введен неверный активационный код')
+
+
+        } catch (e) {
+            next(ApiError.badRequest((e.message)))
+        }
+    }
+
     // Регистрация
     async registration(req, res, next) {
         try {
@@ -146,26 +226,15 @@ class UserController {
         }
     }
 
-    async changePassword(req, res, next) {
+    async getAllUsers(req, res, next) {
         try {
-            const {id, password, newPassword} = req.body
-
-            const user = await User.findOne({ where: { UserID: id } });
-            const isPasswordValid = await bcrypt.compare(password, user.PasswordHash);
-            if (!isPasswordValid) {
-                return next(ApiError.badRequest('Неверный пароль.'));
-            }
-
-            const hashedPassword = await bcrypt.hash(newPassword, 10);
-
-            const updated = await User.update({ PasswordHash: hashedPassword }, { where: { UserID: id } })
-
-            return res.json({status: true})
-
+            const users = await User.findAll();
+            return res.json({users})
         } catch (e) {
-            next(ApiError.badRequest((e.message)))
+            next(ApiError.badRequest(e.message))
         }
     }
+
 }
 
 
