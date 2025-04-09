@@ -60,11 +60,11 @@ export default class UserStore {
     }
 
     // Методы
-    async register(fullname, email, phone, passwordHash) {
+    async register(fullname, email, phone, checkWord, passwordHash) {
         this.setLoading(true);
         this.setError(null);
         try {
-            const response = await UserService.registration(fullname, email, phone, passwordHash);
+            const response = await UserService.registration(fullname, email, phone, checkWord, passwordHash);
             localStorage.setItem('accessToken', response.data.tokens.accessToken);
             this.setUser(response.data.user);
             this.setAuth(true);
@@ -158,22 +158,14 @@ export default class UserStore {
         }
     }
 
-    async updatePassword(id, password, code){
+    async updatePassword(id, password, word){
         try {
-            const {data} = await UserService.updatePassword(id, password, code)
+            const {data} = await UserService.updatePassword(id, password, word)
             return true
         } catch (e) {
             throw e
         }
     }
 
-    async sentCode(Phone, email){
-        try {
-            const {data} = await UserService.sentCode(Phone, email)
-            return true
-        } catch (e) {
-            throw e
-        }
-    }
 }
 

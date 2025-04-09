@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Context } from "../../index";
+import SearchIcon from "../icons/SearchIcon";
 
 const CatalogSearch = () => {
     const [search, setSearch] = useState('');
@@ -13,16 +14,18 @@ const CatalogSearch = () => {
     };
 
     return (
-        <div className="catalog-search w-[90%] sm:w-1/2 mx-auto my-6 flex items-center relative">
+        <div className="w-full max-w-2xl mx-auto my-8 flex gap-2">
             <input
                 type="search"
-                value={search}
-                onChange={handleSearch}
-                placeholder="Введите название фасада..."
-                className="w-[75%] sm:w-[80%] border ps-3 font-normal text-base border-[#939497] rounded-l-[40px] outline-none h-[40px]"
+                className="w-full px-4 py-3 rounded-full border border-gray-300
+             focus:ring-2 focus:ring-[#054C73] focus:border-transparent
+             transition-all placeholder-gray-400"
+                placeholder="Поиск фасадов..."
             />
-            <button className="w-[25%] sm:w-[20%] bg-gray-400 text-white rounded-r-[40px] text-center h-[40px]">
-                Поиск
+            <button className="px-6 bg-[#054C73] hover:bg-[#033952] text-white
+                    rounded-full transition-colors flex items-center gap-2">
+                <SearchIcon className="w-5 h-5"/>
+                <span className="hidden sm:block">Найти</span>
             </button>
         </div>
 

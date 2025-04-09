@@ -17,9 +17,9 @@ const CartService = {
         });
     },
 
-    minus(facadeId, quantity) {
+    minus(facadeId, quantity, userId) {
         return new Promise((resolve, reject) => {
-            $authHost.post('/api/cart/minus', { facadeId, quantity })
+            $authHost.post('/api/cart/minus', { facadeId, quantity, userId })
                 .then(response => resolve(response.data))
                 .catch(error => reject(error));
         });

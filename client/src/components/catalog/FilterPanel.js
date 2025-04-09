@@ -29,10 +29,11 @@ const FilterPanel = () => {
     };
 
     return (
-        <div>
+        <div className="lg:w-72 xl:w-80 flex-shrink-0">
             {/* Кнопка отображается только на маленьких экранах */}
             <button
-                className="block sm:hidden bg-[#054C73] text-white p-2 px-5 rounded-full m-auto"
+                className="lg:hidden w-full mb-4 bg-[#054C73] text-white
+                    py-2 rounded-full"
                 onClick={() => setShowFilters(!showFilters)}
             >
                 {showFilters ? "Скрыть фильтры" : "Показать фильтры"}
@@ -40,20 +41,18 @@ const FilterPanel = () => {
 
             {/* Контейнер для центрирования на больших экранах */}
             <div
-                className={`${
-                    showFilters ? "block" : "hidden"
-                } sm:flex sm:items-center md:justify-center sm:justify-center sm:h-screen`}
+                className={`${showFilters ? 'block' : 'hidden'} lg:block 
+                bg-white p-6 rounded-xl shadow-sm`}
             >
                 {/* Сам блок с фильтрами */}
-                <div className="w-4/5 relative z-20 m-auto sm:ms-32 lg:ms-60  sm:w-[300px] h-auto bg-transparent p-4">
-                    {/* Фильтр по толщине */}
-                    <div className="mb-10">
-                        <h3 className="font-montserrat font-medium text-[20px] text-center sm:text-left text-[#070707]">
+                <div className="space-y-6">
+                    <div className="space-y-3">
+                        <h3 className="text-lg font-medium">
                             Толщина МДФ
                         </h3>
-                        <div className="mt-4 flex justify-center flex-col items-center sm:block">
+                        <div className="space-y-2">
                             {["10", "16", "19"].map((item, index) => (
-                                <label key={index} className="flex items-center mb-3 cursor-pointer">
+                                <label key={index} className="flex items-center gap-3">
                                     <CheckboxUI
                                         labelValue={item + "мм"}
                                         isChecked={facadeStore._filters.thickness === item}

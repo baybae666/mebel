@@ -96,8 +96,7 @@ class CartController {
 
     async minusQuantity(req, res, next) {
         try {
-            const userId = req.user.id;
-            const { facadeId, quantity } = req.body;
+            const { facadeId, quantity, userId } = req.body;
 
             if (!facadeId || quantity <= 0) {
                 return next(ApiError.badRequest('Неверные данные'));
@@ -105,7 +104,7 @@ class CartController {
 
             let cart = await Cart.findOne({ where: { UserID: userId } });
 
-            const facade = await Facade.findByPk(facadeId);
+            const facade = await Facade.findOne({where: {FacadeID: facadeId}});
             if (!facade) {
                 return next(ApiError.badRequest('Фасад не найден'));
             }

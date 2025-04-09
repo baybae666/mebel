@@ -22,7 +22,6 @@ router.post('/login', userController.login);
 
 // Логаут
 router.post('/logout', userController.logout);
-router.post('/sentCode', userController.sendCodeFromUser)
 
 // Проверка авторизации (authMiddleware для проверки токена)
 router.get('/check', authMiddleware, userController.checkAuth);

@@ -37,18 +37,19 @@ const Catalog = () => {
     };
 
     return (
-        <div className='w-screen min-h-[150vh] mb-24'>
+        <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 pb-24">
             <CatalogSearch/>
-            <h1 className='text-4xl sm:text-5xl md:text-6xl font-bold text-[#054C73] ms-[10%] mb-10'>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#054C73]
+                mb-8 sm:mb-12 text-center sm:text-left">
                 Каталог товаров
             </h1>
             <Facades/>
 
-            <div className='w-5/6 flex sm:justify-around justify-center h-[50px] mt-12 mb-7 ms-auto'>
+            <div  className='w-5/6 flex sm:justify-around justify-center h-[50px] mt-12 mb-7 ms-auto'>
                 <span className='hidden sm:block font-semibold text-base sm:text-lg'>
-            {filteredFacades.length ? filteredFacades.length : facadeStore._facdeList.length} товара
-        </span>
-                <div className="relative w-4/5 flex justify-center me-12 sm:w-[250px] h-full">
+      {filteredFacades.length || facadeStore._facdeList.length} товаров
+    </span>
+                <div className="relative w-full sm:w-60">
                     <div onClick={handleDropdownToggle}
                          className='w-full h-full bg-white opacity-85 flex justify-between items-center rounded-3xl px-4 cursor-pointer'>
                         <span>{selectedSorting}</span>
@@ -80,14 +81,9 @@ const Catalog = () => {
                 </div>
             </div>
 
-            <div className='w-full flex flex-col md:flex-row gap-8'>
-                <div className="w-full sm:w-[20%] lg:w-[230px] flex-shrink-0 mt-6">
-                    <FilterPanel/>
-                </div>
-
-                <div className="w-full flex-grow mt-6">
-                    <FacadeList/>
-                </div>
+            <div className="w-full flex flex-col lg:flex-row gap-6">
+                <FilterPanel/>
+                <FacadeList/>
             </div>
 
         </div>

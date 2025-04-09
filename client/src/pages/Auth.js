@@ -14,6 +14,7 @@ const Auth = observer(() => {
     const [passwordRecove, setPasswordRecove] = useState('');
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
+    const [word, setWord] = useState('');
 
     const checkIsLogin = () =>
         location.pathname === LOGINROUTER ? setIsLogin(true) : setIsLogin(false);
@@ -36,13 +37,13 @@ const Auth = observer(() => {
                 userStore.setError('Пароли не совпадают')
                 return;
             }
-            await userStore.register(name, email, phone, password).then(res => navigate(HOMEROUTER), rej => userStore.setError('Не верные логин или пароль') ); // Регистрация
+            await userStore.register(name, email, phone, word, password).then(res => navigate(HOMEROUTER), rej => userStore.setError('Не верные логин или пароль') ); // Регистрация
         }
 
     };
 
     return (
-        <div className={`auth w-4/5 m-auto ${isLogin ? 'min-h-[65vh]' : 'min-h-[75vh]'} flex flex-col items-start justify-start bg-[#eee] p-4 sm:p-8 sm:ps-0`}>
+        <div className={`auth w-4/5 m-auto ${isLogin ? 'min-h-[65vh]' : 'min-h-[85vh]'} flex flex-col items-start justify-start bg-[#eee] p-4 sm:p-8 sm:ps-0`}>
             <h1 className="text-2xl sm:text-4xl font-bold text-[#054C73] mb-6 text-left">
                 {isLogin ? "Вход" : "Регистрация"}
             </h1>
@@ -87,6 +88,13 @@ const Auth = observer(() => {
                                 type="phone"
                                 value={phone}
                                 onChange={(e) => setPhone(e.target.value)}
+                            />
+                            <input
+                                className="shadow-lg rounded-lg w-full bg-gray-50 h-[48px] text-black p-3 outline-none"
+                                placeholder="Кодовое слово"
+                                type="text"
+                                value={word}
+                                onChange={(e) => setWord(e.target.value)}
                             />
                             <input
                                 className="shadow-lg rounded-lg w-full bg-gray-50 h-[48px] text-black p-3 outline-none"

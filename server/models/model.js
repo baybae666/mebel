@@ -8,6 +8,7 @@ const User = sequelize.define('User', {
     PasswordHash: { type: DataTypes.STRING(255), allowNull: false },
     Email: { type: DataTypes.STRING(100), unique: true, allowNull: false },
     Phone: { type: DataTypes.STRING(15), allowNull: true },
+    CheckWord: {type: DataTypes.STRING(100), allowNull: true},
     IsAdmin: { type: DataTypes.BOOLEAN, defaultValue: false }, // Признак администратора
 });
 

@@ -1,25 +1,64 @@
-import React, { useContext, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { PRODUCTROUTER } from "../../utils/consts";
 import { Context } from "../../index";
 import Notification from "../Notification";
+import {observer} from "mobx-react-lite";
 
 const FacadeItem = ({ facade }) => {
     const navigate = useNavigate();
-    const { cartStore } = useContext(Context);
+    const { cartStore, userStore } = useContext(Context);
+    const [cartProducts, setCartProducts] = useState([])
+    const [isCart, setIsCart] = useState(false)
+    const [currentQuantity, setCurrentQuantity] = useState(0);
     const [showNotification, setShowNotification] = useState(false);
     const offNotification = () => setShowNotification(false)
     const navigateToProduct = () => navigate(PRODUCTROUTER + "/" + facade.FacadeID);
 
+    const cartItem = cartStore.cart.find(item => item.FacadeID === facade.FacadeID);
+
+    useEffect(() => {
+        if (cartItem) {
+            setCurrentQuantity(cartItem.Quantity);
+        }
+    }, [cartItem]);
+
     const handleAddToCart = () => {
         cartStore.addToCart(facade.FacadeID, 1);
-        setShowNotification(true); // Показываем уведомление
+        setShowNotification(true);
     };
+
+    const handleQuantityChange =async (id, newQuantity) => {
+        if (newQuantity < 1) return;
+        await cartStore.addToCart(id, newQuantity);
+    };
+
+    const handleQuantityMinus = async (id, newQuantity) => {
+        await cartStore.minus(id, newQuantity, userStore.user.id);
+    };
+
+    // Функция для удаления товара из корзины
+    const handleRemove = (id) => {
+        cartStore.removeFromCart(id);
+    };
+
+    useEffect(() => {
+        if (cartProducts.includes(facade.FacadeID)) {
+            setIsCart(true)
+        }
+    }, []);
+
+    useEffect(() => {
+        cartStore.fetchCart().then(res => {
+            setCartProducts(res.map(product => product.FacadeID))
+        })
+    }, []);
 
     return (
         <div
             className="
         facadeItem
+        hover:shadow-lg transition-shadow duration-300
         w-[90%] sm:w-[236px] md:w-[280px]
         h-auto sm:h-[300px] md:h-[350px]
         flex flex-col items-center justify-center
@@ -30,7 +69,8 @@ const FacadeItem = ({ facade }) => {
                 onClick={navigateToProduct}
             >
                 <img
-                    className="facade-img h-full w-full rounded-[5px] shadow object-cover"
+                    loading="lazy"
+                    className="facade-img h-full w-full rounded-[5px] shadow object-cover hover:scale-105 transition-transform duration-300 cursor-pointer"
                     src={process.env.REACT_APP_API_URL + facade.PhotoURL}
                     alt={facade.FacadeName}
                 />
@@ -38,7 +78,7 @@ const FacadeItem = ({ facade }) => {
 
             <div className="w-full h-[40%] flex flex-col items-center justify-around">
                 <h2
-                    className="
+                    className="hover:text-[#054C73] transition-colors cursor-pointer
             font-medium text-[14px] sm:text-[14px] md:text-[16px]
             text-[#070707] text-center w-[90%] sm:w-[80%]"
                     onClick={navigateToProduct}
@@ -52,17 +92,43 @@ const FacadeItem = ({ facade }) => {
           {facade.Price} руб/шт
         </span>
 
-                <button
-                    className="
-            w-10/12 sm:w-6/12 mb-2
-            min-h-[30px] max-h-[24px] sm:min-h-[22px] sm:max-h-[26px]
-            h-[25%] sm:h-[30%]
-            bg-[#054C73] rounded-[40px]
-            font-medium text-sm sm:text-base text-white"
-                    onClick={handleAddToCart}
-                >
-                    Купить
-                </button>
+
+                {cartItem ? (
+                    <div className="flex items-center gap-3 mb-2">
+                        <button
+                            className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center
+             bg-[#054C73] hover:bg-[#033952] text-white rounded-full
+             transition-colors duration-300 active:scale-95"
+                            onClick={() => handleQuantityMinus(facade.FacadeID, cartItem)}
+                        >
+                            <span className="">−</span>
+                        </button>
+
+                        <span className="font-medium min-w-[30px] text-center text-gray-800
+                 border border-gray-200 rounded-lg py-1 px-3">
+    {currentQuantity}
+  </span>
+
+                        <button
+                            className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center
+             bg-[#054C73] hover:bg-[#033952] text-white rounded-full
+             transition-colors duration-300 active:scale-95"
+                            onClick={() => handleQuantityChange(facade.FacadeID, cartItem + 1)}
+                        >
+                            <span className="">+</span>
+                        </button>
+                    </div>
+                ) : (
+                    <button
+                        className="w-full max-w-[160px] py-2 px-4 bg-[#054C73] hover:bg-[#033952]
+           text-white rounded-xl font-medium transition-all duration-300
+           text-sm sm:text-base md:text-[15px]
+           hover:shadow-md active:scale-95"
+                        onClick={handleAddToCart}
+                    >
+                        Купить
+                    </button>
+                )}
             </div>
 
             {showNotification && (
@@ -76,4 +142,4 @@ const FacadeItem = ({ facade }) => {
     );
 };
 
-export default FacadeItem;
+export default observer(FacadeItem);

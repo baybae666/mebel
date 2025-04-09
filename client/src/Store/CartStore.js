@@ -62,6 +62,7 @@ export default class CartStore {
             this.setCart(items || []);
             this.setTotalPrice(totalPrice || 0);
             this.setCartId(cartId)
+            return items
         } catch (error) {
             this.setError(error.message);
         } finally {
@@ -86,7 +87,7 @@ export default class CartStore {
         }
     }
 
-    async minus(facadeId, quantity) {
+    async minus(facadeId, quantity, userId) {
         if (!facadeId || quantity <= 0) {
             this.setError("Некорректные данные");
             return;
@@ -94,7 +95,7 @@ export default class CartStore {
 
         this.setLoading(true);
         try {
-            await CartService.minus(facadeId, quantity);
+            await CartService.minus(facadeId, quantity, userId);
             await this.fetchCart(); // Обновляем корзину полностью
         } catch (error) {
             this.setError(error.message);

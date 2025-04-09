@@ -1,16 +1,12 @@
 import {$authHost, $host} from "../http/http";
 
 const UserService = {
-    async registration(Fullname, Email, Phone, PasswordHash) {
-        return new Promise(resolve => resolve($authHost.post('/api/user/registration', {Fullname, Email, Phone, PasswordHash})));
+    async registration(Fullname, Email, Phone, CheckWord, PasswordHash) {
+        return new Promise(resolve => resolve($authHost.post('/api/user/registration', {Fullname, Email, Phone, CheckWord, PasswordHash})));
     },
 
     async login(Phone, PasswordHash) {
         return new Promise(resolve => resolve($authHost.post('/api/user/login', {Phone, PasswordHash})));
-    },
-
-    async sentCode(phone, email) {
-        return new Promise(resolve => resolve($authHost.post('/api/user/sentCode', {phone, email})));
     },
 
     async logout() {
@@ -37,8 +33,8 @@ const UserService = {
         return await $authHost.put('/api/user/changePhoneByUserId', {id, phone})
     },
 
-    async updatePassword(id, password, code) {
-        return await $authHost.put('/api/user/changePasswordByUserId', {id, password, code})
+    async updatePassword(id, password, word) {
+        return await $authHost.put('/api/user/changePasswordByUserId', {id, password, word})
     },
 
     async refresh() {

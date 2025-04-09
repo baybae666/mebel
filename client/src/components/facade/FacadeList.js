@@ -1,10 +1,12 @@
-import React, { useContext, useEffect } from 'react';
+import React, {useContext, useEffect, useMemo, useState} from 'react';
 import { Context } from "../../index";
 import FacadeItem from "./FacadeItem";
 import { observer } from "mobx-react-lite";
 
 const FacadeList = () => {
-    const { facadeStore } = useContext(Context);
+    const { facadeStore, cartStore } = useContext(Context);
+    const [cartProducts, setCartProducts] = useState(null)
+    const [facades, setFacades] = useState(null)
 
     useEffect(() => {
         facadeStore.setCurrentPage(1);
@@ -21,8 +23,8 @@ const FacadeList = () => {
     };
 
     useEffect(() => {
-        facadeStore.getAll();
-    }, []);
+        facadeStore.getAll().then(res => setFacades(res))
+    }, [cartStore.cart]);
 
     return (
         <div className="w-full flex flex-col mx-auto items-center mt-5 mb-5 bg-[#eee]">
