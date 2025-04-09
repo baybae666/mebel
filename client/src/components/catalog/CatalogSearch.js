@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Context } from "../index";
+import { Context } from "../../index";
 
 const CatalogSearch = () => {
     const [search, setSearch] = useState('');

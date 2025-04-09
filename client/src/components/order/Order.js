@@ -1,12 +1,12 @@
 import React, {useContext, useState} from 'react';
 import OrderDetailList from "./OrderDetailList";
-import {Context} from "../index";
+import {Context} from "../../index";
 import {observer} from "mobx-react-lite";
-import ArrowRightIcon from "./ArrowRightIcon";
-import MailIcon from "./MailIcon";
-import PhoneIcon from "./PhoneIcon";
-import UserIcon from "./UserIcon";
-import CancelIcon from "./CancelIcon";
+import ArrowRightIcon from "../icons/ArrowRightIcon";
+import MailIcon from "../icons/MailIcon";
+import PhoneIcon from "../icons/PhoneIcon";
+import UserIcon from "../icons/UserIcon";
+import CancelIcon from "../icons/CancelIcon";
 
 const Order = ({order}) => {
     const {orderStore, userStore} = useContext(Context)

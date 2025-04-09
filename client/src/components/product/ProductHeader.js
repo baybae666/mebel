@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {Context} from "../index";
+import {Context} from "../../index";
 
 const ProductHeader = ({ facade }) => {
     const [count, setCount] = useState(1);

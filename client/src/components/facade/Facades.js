@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
-import PremiumImage from "../assets/premium.png";
-import OptimaImage from "../assets/optima.png";
-import ElegantImage from "../assets/elegant.png";
-import StandartImage from "../assets/standart.png";
-import KantryImage from "../assets/kantryF.png";
-import ModernImage from "../assets/modern.png";
-import VolnaImage from "../assets/wave.png";
-import { Context } from "../index";
+import PremiumImage from "../../assets/premium.png";
+import OptimaImage from "../../assets/optima.png";
+import ElegantImage from "../../assets/elegant.png";
+import StandartImage from "../../assets/standart.png";
+import KantryImage from "../../assets/kantryF.png";
+import ModernImage from "../../assets/modern.png";
+import VolnaImage from "../../assets/wave.png";
+import { Context } from "../../index";
 
 const Facades = () => {
     const { facadeStore } = useContext(Context);

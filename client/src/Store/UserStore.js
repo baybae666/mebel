@@ -69,7 +69,8 @@ export default class UserStore {
             this.setUser(response.data.user);
             this.setAuth(true);
         } catch (error) {
-            this.setError(error.message);
+            this.setError('Не верный логин или пароль');
+            throw error
         } finally {
             this.setLoading(false);
         }
@@ -84,7 +85,8 @@ export default class UserStore {
             this.setUser(response.data.user);
             this.setAuth(true);
         } catch (error) {
-            this.setError(error.message);
+            this.setError('Не верный логин или пароль');
+            throw error
         } finally {
             this.setLoading(false);
         }

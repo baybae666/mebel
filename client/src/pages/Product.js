@@ -1,10 +1,10 @@
 import React, {useContext, useEffect} from 'react';
 import {Context} from "../index";
 import {useParams} from "react-router-dom";
-import ProductHeader from "../components/ProductHeader";
+import ProductHeader from "../components/product/ProductHeader";
 import {observer} from "mobx-react-lite";
-import Descriptioon from "../components/Descriptioon";
-import Parameters from "../components/Parameters";
+import Descriptioon from "../components/product/Descriptioon";
+import Parameters from "../components/product/Parameters";
 
 const Product = () => {
     const {facadeStore} = useContext(Context);

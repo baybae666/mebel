@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from "react";
 import { observer } from "mobx-react-lite";
-import CartItem from "../components/CartItem";
+import CartItem from "../components/cart/CartItem";
 import {Context} from "../index";
 import {Link, NavLink, useNavigate} from "react-router-dom";
 import {CATALOGROUTER, LOGINROUTER, ORDERCONFIRMROUTER} from "../utils/consts";

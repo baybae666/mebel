@@ -1,8 +1,8 @@
-import EditIcon from "./EditIcon";
+import EditIcon from "../icons/EditIcon";
 import React, {useContext, useEffect, useState} from "react";
-import {Context} from "../index";
+import {Context} from "../../index";
 import {observer} from "mobx-react-lite";
-import Notification from "./Notification";
+import Notification from "../Notification";
 import PasswordModal from "./PasswordModal";
 
 const PersonalData = () => {

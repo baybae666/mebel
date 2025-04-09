@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useMemo, useState} from 'react';
-import {Context} from "../index";
+import {Context} from "../../index";
 import {NavLink} from "react-router-dom";
 import OrderDetailItem from "./OrderDetailItem";
 import {observer} from "mobx-react-lite";

@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Context } from "../index";
-import Notification from "./Notification";
-import CloseIcon from "./CloseIcon";
+import { Context } from "../../index";
+import Notification from "../Notification";
+import CloseIcon from "../icons/CloseIcon";
 import {observer} from "mobx-react-lite";
 
 const PasswordModal = ({ onClose, onShowNotification }) => {

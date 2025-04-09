@@ -6,10 +6,10 @@ import VolnaImage from '../assets/volna.png';
 import CreateImage from '../assets/create.png';
 import DeliveryImage from '../assets/delive.png';
 import CraftImage from '../assets/craft.png';
-import OrderSteps from "../components/OrderSteps";
-import HeroSection from "../components/HeroSection";
-import Advantages from "../components/Advantages";
-import Examples from "../components/Examples";
+import OrderSteps from "../components/home/OrderSteps";
+import HeroSection from "../components/home/HeroSection";
+import Advantages from "../components/home/Advantages";
+import Examples from "../components/home/Examples";
 
 const facadesData = [
     {id: 1, title: "Грань", image: GranImage},

@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { LOGINROUTER, REGISTERROUTER } from "../utils/consts";
+import {HOMEROUTER, LOGINROUTER, REGISTERROUTER} from "../utils/consts";
 import { observer } from "mobx-react-lite";
 import {Context} from "../index";
 
@@ -20,28 +20,29 @@ const Auth = observer(() => {
 
     useEffect(() => {
         checkIsLogin();
+        userStore.setError('')
     }, [location.pathname]);
 
     const handleSubmit = async () => {
+
         if (isLogin) {
-            await userStore.login(phone, password).then(null, rej => alert(rej) ) // Вход
+            await userStore.login(phone, password).then(res => navigate(HOMEROUTER), rej => userStore.setError('Не верные логин или пароль')) // Вход
         } else {
-            if (password !== passwordRecove) {
-                alert("Пароли не совпадают!");
+            if (!phone || !name || !password || !email) {
+                userStore.setError('Заполнены не все поля')
                 return;
             }
-            await userStore.register(name, email, phone, password).then(null, rej => alert(rej) ); // Регистрация
+            if (password !== passwordRecove) {
+                userStore.setError('Пароли не совпадают')
+                return;
+            }
+            await userStore.register(name, email, phone, password).then(res => navigate(HOMEROUTER), rej => userStore.setError('Не верные логин или пароль') ); // Регистрация
         }
 
-        if (userStore.isAuth) {
-            navigate("/"); // Перенаправление на главную после успеха
-        } else if (userStore.error) {
-            alert(userStore.error); // Показываем ошибку
-        }
     };
 
     return (
-        <div className="auth w-4/5 m-auto min-h-screen flex flex-col items-start justify-start bg-[#eee] p-4 sm:p-8 sm:ps-0">
+        <div className={`auth w-4/5 m-auto ${isLogin ? 'min-h-[65vh]' : 'min-h-[75vh]'} flex flex-col items-start justify-start bg-[#eee] p-4 sm:p-8 sm:ps-0`}>
             <h1 className="text-2xl sm:text-4xl font-bold text-[#054C73] mb-6 text-left">
                 {isLogin ? "Вход" : "Регистрация"}
             </h1>
@@ -110,6 +111,7 @@ const Auth = observer(() => {
                 >
                     {isLogin ? "Войти" : "Зарегистрироваться"}
                 </button>
+                {userStore.error && <p className='text-center text-red-500 mt-2'>{userStore.error}</p>}
                 <div className="text-center mt-4">
                     {isLogin ? (
                         <span>

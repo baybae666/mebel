@@ -1,8 +1,8 @@
 import React, {useContext, useState} from 'react';
-import Order from "../components/Order";
+import Order from "../components/order/Order";
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
-import OrderMoadal from "../components/OrderMoadal";
+import OrderMoadal from "../components/order/OrderMoadal";
 import {useNavigate} from "react-router-dom";
 import {PROFILEROUTER} from "../utils/consts";
 

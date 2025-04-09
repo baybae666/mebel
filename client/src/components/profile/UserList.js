@@ -1,9 +1,9 @@
 import React, {useContext, useEffect} from 'react';
 import { observer } from 'mobx-react-lite';
 import UserItem from './UserItem';
-import {Context} from "../index";
+import {Context} from "../../index";
 import {useNavigate} from "react-router-dom";
-import {PROFILEROUTER} from "../utils/consts";
+import {PROFILEROUTER} from "../../utils/consts";
 
 const UserList = observer(() => {
     const { userStore } = useContext(Context);

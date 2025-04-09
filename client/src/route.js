@@ -15,7 +15,7 @@ import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
 import Cart from "./pages/Cart";
 import OrderConfirm from "./pages/OrderConfirm";
-import OrderList from "./pages/OrderList";
+import OrderList from "./components/order/OrderList";
 import Profile from "./pages/Profile";
 
 export const publicRoutes = [

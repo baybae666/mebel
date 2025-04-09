@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, useMemo, useState} from 'react';
-import {Context} from "../index";
-import Order from "../components/Order";
+import {Context} from "../../index";
+import Order from "./Order";
 import {observer} from "mobx-react-lite";
-import OrderItem from "../components/OrderItem";
-import OrderMoadal from "../components/OrderMoadal";
+import OrderItem from "./OrderItem";
+import OrderMoadal from "./OrderMoadal";
 import {useParams} from "react-router-dom";
 
 const OrderList = () => {
@@ -47,7 +47,7 @@ const OrderList = () => {
     } else if (orders.length === 0) {
         return (
             <div className="max-w-2xl mx-auto p-5 flex justify-center items-center">
-                <p>У вас еще нет заказов</p>
+                <p>Заказов еще нет</p>
             </div>
         )
     }

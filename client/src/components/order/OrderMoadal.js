@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
-import {Context} from "../index";
-import {PROFILEROUTER} from "../utils/consts";
+import {Context} from "../../index";
+import {PROFILEROUTER} from "../../utils/consts";
 import {useNavigate} from "react-router-dom";
 
 const OrderMoadal = ({onClose, id}) => {

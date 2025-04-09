@@ -1,14 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {ORDERLISTROUTER, PROFILEROUTER} from "../utils/consts";
-import PersonalData from "../components/PersonalData";
-import OrderList from "./OrderList";
-import OrdersIcon from "../components/OrdersIcon";
-import UserIcon from "../components/UserIcon";
+import PersonalData from "../components/profile/PersonalData";
+import OrderList from "../components/order/OrderList";
+import OrdersIcon from "../components/order/OrdersIcon";
+import UserIcon from "../components/icons/UserIcon";
 import {observer} from "mobx-react-lite";
-import UserList from "../components/UserList";
+import UserList from "../components/profile/UserList";
 import {Context} from "../index";
-import UsersListIcon from "../components/UsersListIcon";
+import UsersListIcon from "../components/icons/UsersListIcon";
 
 const Profile = () => {
     const {userStore} = useContext(Context)

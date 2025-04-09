@@ -1,7 +1,7 @@
 import React from "react";
-import CarIcon from "../assets/car.svg";
-import HeartIcon from "../assets/heart.svg";
-import ShieldIcon from "../assets/shit.svg";
+import CarIcon from "../../assets/car.svg";
+import HeartIcon from "../../assets/heart.svg";
+import ShieldIcon from "../../assets/shit.svg";
 
 const Advantages = () => {
     const advantages = [

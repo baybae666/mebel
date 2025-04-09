@@ -1,9 +1,9 @@
 import React, {useContext, useState} from 'react';
-import FacadeList from "../components/FacadeList";
+import FacadeList from "../components/facade/FacadeList";
 import { observer } from "mobx-react-lite";
-import CatalogSearch from "../components/CatalogSearch";
-import Facades from "../components/Facades";
-import FilterPanel from "../components/FilterPanel";
+import CatalogSearch from "../components/catalog/CatalogSearch";
+import Facades from "../components/facade/Facades";
+import FilterPanel from "../components/catalog/FilterPanel";
 import {Context} from "../index";
 
 const Catalog = () => {

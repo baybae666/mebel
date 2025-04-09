@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { CATALOGROUTER } from "../utils/consts";
+import { CATALOGROUTER } from "../../utils/consts";
 
 const HeroSection = () => {
     return (

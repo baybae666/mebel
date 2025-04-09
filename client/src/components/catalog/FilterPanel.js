@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import CheckboxUI from "./CheckboxUI";
-import { Context } from "../index";
+import { Context } from "../../index";
 
 const FilterPanel = () => {
     const { facadeStore } = useContext(Context);
