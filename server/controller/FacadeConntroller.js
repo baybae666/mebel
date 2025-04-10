@@ -67,55 +67,48 @@ class FacadeController {
     }
 
     // Обновление информации о соискателе
-    async update(req, res) {
+    async update(req, res, next) {
         try {
-            const { userId } = req.params;
-            const { profession, age, experience, description } = req.body;
-            let fileName = null;
+            const { facadeId, FacadeName, Material, Backside, Batch, Cover, Patina, SpaceForGlass, Direction, Guarantee, Price, Description } = req.body;
 
-            // Если пришло новое фото, сохраняем его
-            if (req.files && req.files.photo) {
-                const { photo } = req.files;
-                fileName = uuid.v4() + ".jpg";
-                photo.mv(path.resolve(__dirname, '..', 'static', fileName));
-            }
-
-            const updatedApplicant = await Applicant.update(
+            const updatedFacade = await Facade.update(
                 {
-                    profession,
-                    age,
-                    experience,
-                    description,
-                    photo: fileName || undefined  // Обновляем фото только если оно было передано
+                    FacadeName,
+                    Material,
+                    Backside,
+                    Batch,
+                    Cover,
+                    Patina,
+                    SpaceForGlass,
+                    Direction,
+                    Guarantee,
+                    Price,
+                    Description
                 },
-                { where: { userId } }
+                { where: { FacadeID: facadeId } }
             );
 
-            if (updatedApplicant[0] === 0) {
-                return res.status(404).json({ message: 'Соискатель не найден' });
-            }
-
-            return res.json({ message: 'Информация о соискателе обновлена' });
+            return res.json(updatedFacade);
         } catch (e) {
             console.error(e);
-            return res.status(500).json({ message: 'Ошибка при обновлении данных соискателя' });
+            return res.status(500).json({ message: 'Ошибка при обновлении данных товара' });
         }
     }
 
     // Удаление соискателя по userId
     async delete(req, res) {
         try {
-            const { userId } = req.params;
-            const deletedApplicant = await Applicant.destroy({ where: { userId } });
+            const {facadeId} = req.body
+            const deletedApplicant = await Facade.destroy({ where: { FacadeID: facadeId } });
 
             if (!deletedApplicant) {
-                return res.status(404).json({ message: 'Соискатель не найден' });
+                return res.status(404).json({ message: 'Товар не найден' });
             }
 
-            return res.json({ message: 'Соискатель удалён' });
+            return res.json({ message: 'Товар удалён' });
         } catch (e) {
             console.error(e);
-            return res.status(500).json({ message: 'Ошибка при удалении соискателя' });
+            return res.status(500).json({ message: 'Ошибка при удалении товара' });
         }
     }
 }

@@ -1,5 +1,6 @@
 import { makeAutoObservable } from "mobx";
-import FacadeService from "../FacadeService/FacadeService";
+import FacadeService from "../UserService/FacadeService";
+import OrderService from "../UserService/OrderService";
 
 export default class FacadeStore {
     constructor() {
@@ -41,6 +42,10 @@ export default class FacadeStore {
         return this._itemsPerPage;
     }
 
+    get facades() {
+        return this._facdeList
+    }
+
 
     setFacadeList(facadeList) {
         this._facdeList = facadeList;
@@ -74,7 +79,8 @@ export default class FacadeStore {
     }
 
     async create(formData) {
-        await FacadeService.create(formData);
+        const response = await FacadeService.create(formData);
+        this.setFacade(response.data)
     }
 
     filterFacades() {
@@ -142,6 +148,26 @@ export default class FacadeStore {
         }).length;
     }
 
+
+    async updateFacade(facadeId, FacadeName, Material, Backside, Batch, Cover, Patina, SpaceForGlass, Direction, Guarantee, Price, Description){
+        try {
+            const {data} = await FacadeService.updateFacade(facadeId, FacadeName, Material, Backside, Batch, Cover, Patina, SpaceForGlass, Direction, Guarantee, Price, Description)
+            this.setFacade(data)
+            return true
+        } catch (e) {
+            return e
+        }
+    }
+
+    async delFacade(facadeId){
+        try {
+            const {data} = await FacadeService.deleteFacade(facadeId)
+            this.setFacade({})
+            return true
+        } catch (e) {
+            return e
+        }
+    }
 
 }
 

@@ -9,6 +9,8 @@ import {observer} from "mobx-react-lite";
 import UserList from "../components/profile/UserList";
 import {Context} from "../index";
 import UsersListIcon from "../components/icons/UsersListIcon";
+import FacadeSection from "../components/profile/FacadeSection";
+import ProductIcon from "../components/icons/ProductIcon";
 
 const Profile = () => {
     const {userStore} = useContext(Context)
@@ -27,6 +29,9 @@ const Profile = () => {
         if (section === 'users') {
             setCurrentTab('users')
         }
+        if (section === 'products') {
+            setCurrentTab('products')
+        }
     }
 
     useEffect(() => {
@@ -37,7 +42,7 @@ const Profile = () => {
         <div className="min-h-[70vh] w-4/5 m-auto">
             <h1 className='text-4xl md:text-5xl font-bold text-[#054C73] mb-6 text-center lg:text-left mt-5'>Личный кабинет</h1>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                <div className="flex flex-col md:flex-row gap-8">
+                <div className={`flex flex-col md:flex-row gap-8 ${currentTab === 'products' ? 'flex-col justify-center' : ''}`}>
                     <div className="w-full md:w-64 lg:w-72 space-y-2">
                         <div
                             onClick={() => {
@@ -67,6 +72,20 @@ const Profile = () => {
                             <span className="font-medium">Пользователи</span>
                         </div>}
 
+                        {userStore.user.isAdmin && <div
+                            onClick={() => {
+                                navigation(PROFILEROUTER + '/products')
+                            }}
+                            className={`p-4 rounded-xl cursor-pointer transition-all flex items-center ${
+                                currentTab === 'products'
+                                    ? 'bg-white shadow-md border-2 border-[#054C73] text-[#054C73]'
+                                    : 'bg-white hover:bg-gray-50 border border-gray-200'
+                            }`}
+                        >
+                            <ProductIcon className="w-5 h-5 me-2" />
+                            <span className="font-medium">Товары</span>
+                        </div>}
+
                         <div
                             onClick={() => navigation(PROFILEROUTER + '/orders' + '/' + userStore.user.id)}
                             className={`p-4 rounded-xl cursor-pointer transition-all flex items-center ${
@@ -81,7 +100,7 @@ const Profile = () => {
                     </div>
 
                     <div className="flex-1 bg-white rounded-xl shadow-sm p-6 md:p-8">
-                        {currentTab === 'lk' ? <PersonalData/> : currentTab === 'orders' ? <OrderList/> : <UserList/>}
+                        {currentTab === 'lk' ? <PersonalData/> : currentTab === 'orders' ? <OrderList/> : currentTab === 'users' ? <UserList/> : <FacadeSection/>}
                     </div>
                 </div>
             </div>
