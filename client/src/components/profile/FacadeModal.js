@@ -150,7 +150,6 @@ const FacadeModal = ({onClose, isAction, facade}) => {
                             />
                         </div>
 
-                        {/* Остальные поля аналогично */}
                         <div className="space-y-2">
                             <label className="text-sm font-medium text-gray-700">Материал</label>
                             <input
@@ -160,7 +159,6 @@ const FacadeModal = ({onClose, isAction, facade}) => {
                                 onChange={(e) => setMaterial(e.target.value)}
                             />
                         </div>
-                        {/* Обратная сторона */}
                         <div className="space-y-2">
                             <label className="text-sm font-medium text-gray-700">Обратная сторона</label>
                             <input
@@ -170,8 +168,6 @@ const FacadeModal = ({onClose, isAction, facade}) => {
                                 onChange={(e) => setBackside(e.target.value)}
                             />
                         </div>
-
-                        {/* Партия */}
                         <div className="space-y-2">
                             <label className="text-sm font-medium text-gray-700">Партия</label>
                             <input
@@ -182,7 +178,6 @@ const FacadeModal = ({onClose, isAction, facade}) => {
                             />
                         </div>
 
-                        {/* Покрытие */}
                         <div className="space-y-2">
                             <label className="text-sm font-medium text-gray-700">Покрытие</label>
                             <input
@@ -193,7 +188,6 @@ const FacadeModal = ({onClose, isAction, facade}) => {
                             />
                         </div>
 
-                        {/* Патина */}
                         <div className="space-y-2">
                             <label className="text-sm font-medium text-gray-700">Патина</label>
                             <input
@@ -204,7 +198,6 @@ const FacadeModal = ({onClose, isAction, facade}) => {
                             />
                         </div>
 
-                        {/* Пространство для стекла */}
                         <div className="space-y-2">
                             <label className="text-sm font-medium text-gray-700 block mb-2">
                                 Пространство для стекла
@@ -232,7 +225,6 @@ const FacadeModal = ({onClose, isAction, facade}) => {
                             </div>
                         </div>
 
-                        {/* Направление */}
                         <div className="space-y-2">
                             <label className="text-sm font-medium text-gray-700">Направление</label>
                             <input
@@ -243,7 +235,6 @@ const FacadeModal = ({onClose, isAction, facade}) => {
                             />
                         </div>
 
-                        {/* Гарантия */}
                         <div className="space-y-2">
                             <label className="text-sm font-medium text-gray-700">Гарантия</label>
                             <input
@@ -254,7 +245,6 @@ const FacadeModal = ({onClose, isAction, facade}) => {
                             />
                         </div>
 
-                        {/* Цена */}
                         <div className="space-y-2">
                             <label className="text-sm font-medium text-gray-700">Цена</label>
                             <input
@@ -265,7 +255,6 @@ const FacadeModal = ({onClose, isAction, facade}) => {
                             />
                         </div>
 
-                        {/* Описание */}
                         <div className="md:col-span-2 space-y-2">
                             <label className="text-sm font-medium text-gray-700">Описание</label>
                             <textarea
