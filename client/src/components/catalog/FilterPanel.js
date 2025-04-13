@@ -47,7 +47,7 @@ const FilterPanel = () => {
                 {/* Сам блок с фильтрами */}
                 <div className="space-y-6">
                     <div className="space-y-3">
-                        <h3 className="text-lg font-medium">
+                        <h3 className="text-lg font-medium font-montserrat">
                             Толщина МДФ
                         </h3>
                         <div className="space-y-2">
@@ -64,13 +64,13 @@ const FilterPanel = () => {
                     </div>
 
                     {/* Фильтр по патине */}
-                    <div className="mb-10">
-                        <h3 className="font-montserrat font-medium text-[20px] text-center sm:text-left text-[#070707]">
+                    <div className="space-y-3">
+                        <h3 className="text-lg font-montserrat font-medium">
                             Обработка под лак
                         </h3>
-                        <div className="mt-4 flex justify-center flex-col items-center sm:block">
+                        <div className="space-y-2">
                             {["Да", "Нет"].map((item, index) => (
-                                <label key={index} className="flex items-center mb-3 cursor-pointer">
+                                <label key={index} className="flex items-center gap-3">
                                     <CheckboxUI
                                         labelValue={item}
                                         isChecked={facadeStore._filters.patina === item}
@@ -83,7 +83,7 @@ const FilterPanel = () => {
 
                     {/* Фильтр по цене */}
                     <div className="mb-10">
-                        <h3 className="font-montserrat text-center sm:text-left font-medium text-[20px] text-[#070707]">
+                        <h3 className="font-montserrat sm:text-left text-lg font-medium text-[20px] text-[#070707]">
                             Цена
                         </h3>
                         <div className="mt-4 flex justify-between gap-2">

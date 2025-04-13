@@ -37,9 +37,9 @@ const Path = () => {
 
                 return (
                     <React.Fragment key={to}>
-                        <span className="mx-2">→</span>
+                        {!(+segment) && <span className="mx-2">→</span>}
                         {isLast ? (
-                            <span>{breadcrumbMap[segment] || segment}</span>
+                            <span>{breadcrumbMap[segment] || ((+segment) ? '' : segment) }</span>
                         ) : (
                             <Link to={to} className="hover:underline">
                                 {breadcrumbMap[segment] || segment}

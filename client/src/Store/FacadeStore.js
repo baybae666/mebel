@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import FacadeService from "../UserService/FacadeService";
 import OrderService from "../UserService/OrderService";
+import facades from "../components/facade/Facades";
 
 export default class FacadeStore {
     constructor() {
@@ -81,6 +82,12 @@ export default class FacadeStore {
     async create(formData) {
         const response = await FacadeService.create(formData);
         this.setFacade(response.data)
+    }
+
+    searchFacades() {
+        return this._facdeList.filter(facade => this._searchQuery
+                ? facade.FacadeName.toLowerCase().includes(this._searchQuery)
+                : true)
     }
 
     filterFacades() {

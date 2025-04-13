@@ -25,7 +25,7 @@ const CartItem = ({ cartItem, onQuantityChange, photo, onRemove, minus}) => {
             </div>
             <div className="flex items-center self-center justify-center sm:justify-start space-x-4">
                 <button
-                    onClick={() => minus(FacadeID, Quantity - 1)}
+                    onClick={() => minus(FacadeID, Quantity)}
                     className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
                 >
                     -

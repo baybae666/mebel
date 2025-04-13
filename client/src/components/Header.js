@@ -76,7 +76,7 @@ const Header = () => {
 
                         {userStore.isAuth ? (
                             <>
-                                <NavLink to={PROFILEROUTER + '/lk'}><button className="person_btn hidden sm:inline"></button></NavLink>
+                                <NavLink to={PROFILEROUTER + '/lk'}><button className="person_btn ms-2 inline"></button></NavLink>
                                 <button className="logout_btn hidden sm:inline" onClick={handleLogout}></button>
                             </>
 

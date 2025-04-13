@@ -14,11 +14,11 @@ const Order = ({order}) => {
         await orderStore.updateStatus(order.OrderID, 'Не оформлен')
     }
     return (
-        <div className="bg-white  p-6 md:p-8 mx-auto max-w-4xl ">
+        <div className="bg-white p-6 md:p-8 mx-auto max-w-4xl ">
             {/* Шапка заказа */}
             <div className="flex flex-col md:flex-row justify-between items-start mb-6 gap-4">
                 <div className="space-y-1">
-                    <h2 className="text-2xl font-bold text-[#054C73]">Заказ №{order.OrderID}</h2>
+                    <h2 className="text-2xl font-bold text-[#054C73]">Номер заказа {order.OrderID}</h2>
                     <div className="flex items-center gap-2">
                         <span className="text-gray-600">
                     {new Date(order.OrderDate).toLocaleDateString()}

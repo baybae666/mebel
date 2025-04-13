@@ -37,7 +37,7 @@ const Catalog = () => {
     };
 
     return (
-        <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 pb-24">
+        <div className="w-4/5 min-h-screen mx-auto pb-24">
             <CatalogSearch/>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#054C73]
                 mb-8 sm:mb-12 text-center sm:text-left">

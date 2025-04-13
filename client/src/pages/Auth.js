@@ -5,41 +5,53 @@ import { observer } from "mobx-react-lite";
 import {Context} from "../index";
 
 const Auth = observer(() => {
-    const { userStore } = useContext(Context); // Доступ к UserStore
+    // Доступ к хранилищу пользователя и навигации
+    const { userStore } = useContext(Context);
     const location = useLocation();
     const navigate = useNavigate();
-    const [isLogin, setIsLogin] = useState(false);
+
+    // Состояния формы
+    const [isLogin, setIsLogin] = useState(false); // Режим входа/регистрации
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
-    const [passwordRecove, setPasswordRecove] = useState('');
+    const [passwordRecove, setPasswordRecove] = useState(''); // Подтверждение пароля
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
-    const [word, setWord] = useState('');
+    const [word, setWord] = useState(''); // Кодовое слово для восстановления
 
+    // Проверка текущего маршрута (логин или регистрация)
     const checkIsLogin = () =>
         location.pathname === LOGINROUTER ? setIsLogin(true) : setIsLogin(false);
 
+    // Сброс ошибок при смене маршрута
     useEffect(() => {
         checkIsLogin();
         userStore.setError('')
     }, [location.pathname]);
 
+    // Обработка отправки формы
     const handleSubmit = async () => {
-
         if (isLogin) {
-            await userStore.login(phone, password).then(res => navigate(HOMEROUTER), rej => userStore.setError('Не верные логин или пароль')) // Вход
+            // Логин: проверка учетных данных
+            await userStore.login(phone, password)
+                .then(res => navigate(HOMEROUTER))
+                .catch(() => userStore.setError('Не верные логин или пароль'));
         } else {
+            // Валидация полей регистрации
             if (!phone || !name || !password || !email) {
-                userStore.setError('Заполнены не все поля')
+                userStore.setError('Заполнены не все поля');
                 return;
             }
             if (password !== passwordRecove) {
-                userStore.setError('Пароли не совпадают')
+                userStore.setError('Пароли не совпадают');
                 return;
             }
-            await userStore.register(name, email, phone, word, password).then(res => navigate(HOMEROUTER), rej => userStore.setError('Не верные логин или пароль') ); // Регистрация
-        }
 
+            // Регистрация нового пользователя
+            await userStore.register(name, email, phone, word, password)
+                .then(res => navigate(HOMEROUTER))
+                .catch(() => userStore.setError('Ошибка регистрации'));
+        }
     };
 
     return (
@@ -47,9 +59,12 @@ const Auth = observer(() => {
             <h1 className="text-2xl sm:text-4xl font-bold text-[#054C73] mb-6 text-left">
                 {isLogin ? "Вход" : "Регистрация"}
             </h1>
+
+            {/* Форма авторизации/регистрации */}
             <div className="w-full m-auto max-w-md mt-10 bg-white shadow-lg rounded-lg p-6 sm:p-8">
                 <div className="space-y-4">
                     {isLogin ? (
+                        // Поля для входа
                         <>
                             <input
                                 className="shadow-lg rounded-lg w-full bg-gray-50 h-[48px] text-black p-3 outline-none"
@@ -67,6 +82,7 @@ const Auth = observer(() => {
                             />
                         </>
                     ) : (
+                        // Поля для регистрации
                         <>
                             <input
                                 className="shadow-lg rounded-lg w-full bg-gray-50 h-[48px] text-black p-3 outline-none"
@@ -113,13 +129,19 @@ const Auth = observer(() => {
                         </>
                     )}
                 </div>
+
+                {/* Кнопка отправки формы */}
                 <button
                     onClick={handleSubmit}
                     className="bg-[#054C73] mt-6 w-full text-white font-medium tracking-wide rounded-lg px-6 py-3 text-lg hover:bg-[#043b5a] transition duration-300"
                 >
                     {isLogin ? "Войти" : "Зарегистрироваться"}
                 </button>
+
+                {/* Отображение ошибок */}
                 {userStore.error && <p className='text-center text-red-500 mt-2'>{userStore.error}</p>}
+
+                {/* Ссылка для переключения между формами */}
                 <div className="text-center mt-4">
                     {isLogin ? (
                         <span>

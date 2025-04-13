@@ -9,7 +9,6 @@ const FacadeItem = ({ facade }) => {
     const navigate = useNavigate();
     const { cartStore, userStore } = useContext(Context);
     const [cartProducts, setCartProducts] = useState([])
-    const [isCart, setIsCart] = useState(false)
     const [currentQuantity, setCurrentQuantity] = useState(0);
     const [showNotification, setShowNotification] = useState(false);
     const offNotification = () => setShowNotification(false)
@@ -42,11 +41,6 @@ const FacadeItem = ({ facade }) => {
         cartStore.removeFromCart(id);
     };
 
-    useEffect(() => {
-        if (cartProducts.includes(facade.FacadeID)) {
-            setIsCart(true)
-        }
-    }, []);
 
     useEffect(() => {
         cartStore.fetchCart().then(res => {

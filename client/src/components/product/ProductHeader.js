@@ -1,15 +1,24 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Context} from "../../index";
+import {observer} from "mobx-react-lite";
 
 const ProductHeader = ({ facade }) => {
     const [count, setCount] = useState(1);
+    const [cartProducts, setCartProducts] = useState([])
     const { cartStore } = useContext(Context);
 
+    const [cartItem, setCartItem] = useState(cartStore.cart.find(item => item.FacadeID === facade.FacadeID));
     const handleAddToCart = () => {
         if (count > 0) {
-            cartStore.addToCart(facade.FacadeID, count);
+            cartStore.addToCart(facade.FacadeID, count).then(res => setCartItem(cartStore.cart.find(item => item.FacadeID === facade.FacadeID)))
         }
     };
+
+    useEffect(() => {
+        cartStore.fetchCart().then(res => {
+            setCartProducts(res.map(product => product.FacadeID))
+        })
+    }, []);
 
     return (
         <div className='w-full sm:w-[70%] lg:w-[70%] h-auto flex flex-col sm:flex-row justify-between sm:gap-8 mx-auto mt-20'>
@@ -44,7 +53,7 @@ const ProductHeader = ({ facade }) => {
                     <button
                         className='w-full h-[40px] min-w-[145px] mt-2 bg-[#054C73] border-none rounded-[40px] text-white font-medium text-base flex justify-center items-center'
                         onClick={handleAddToCart}>
-                        В корзину
+                        {cartItem ? 'Товар добавлен в корзину' : 'В корзину'}
                     </button>
                 </div>
 
@@ -62,4 +71,4 @@ const ProductHeader = ({ facade }) => {
     );
 };
 
-export default ProductHeader;
+export default observer(ProductHeader);

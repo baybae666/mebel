@@ -19,7 +19,7 @@ const Cart = observer(() => {
     };
 
     const handleQuantityMinus = (id, newQuantity) => {
-        cartStore.minus(id, newQuantity);
+        cartStore.minus(id, newQuantity, userStore.user.id);
     };
 
     // Функция для удаления товара из корзины

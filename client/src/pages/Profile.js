@@ -39,7 +39,7 @@ const Profile = () => {
     }, [section]);
 
     return (
-        <div className="min-h-[70vh] w-4/5 m-auto">
+        <div className="min-h-[70vh] w-screen sm:w-4/5 m-auto">
             <h1 className='text-4xl md:text-5xl font-bold text-[#054C73] mb-6 text-center lg:text-left mt-5'>Личный кабинет</h1>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className={`flex flex-col md:flex-row gap-8 ${currentTab === 'products' ? 'flex-col justify-center' : ''}`}>
@@ -99,7 +99,7 @@ const Profile = () => {
                         </div>
                     </div>
 
-                    <div className="flex-1 bg-white rounded-xl shadow-sm p-6 md:p-8">
+                    <div className="flex-1 bg-white rounded-xl shadow-sm md:p-8">
                         {currentTab === 'lk' ? <PersonalData/> : currentTab === 'orders' ? <OrderList/> : currentTab === 'users' ? <UserList/> : <FacadeSection/>}
                     </div>
                 </div>

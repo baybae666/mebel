@@ -26,6 +26,13 @@ const FacadeList = () => {
         facadeStore.getAll().then(res => setFacades(res))
     }, [cartStore.cart]);
 
+    useEffect(() => {
+        window.scrollTo({
+            top: 200,
+            behavior: 'smooth'
+        })
+    }, [facadeStore.currentPage]);
+
     return (
         <div className="w-full flex flex-col mx-auto items-center mt-5 mb-5 bg-[#eee]">
             <div className="w-full sm:w-[90%] lg:w-[70%] flex flex-wrap gap-4 justify-center">

@@ -34,7 +34,7 @@ const Facades = () => {
                     <div
                         key={index}
                         className={`bg-white rounded-lg flex flex-col items-center p-2 shadow cursor-pointer hover:shadow-md transition-shadow w-[150px] md:w-[170px] ${
-                            facade.type === "all" ? "h-32" : "w-[100px]"
+                            facade.type === "all" ? "h-32 self-center" : "w-[100px]"
                         }`}
                         onClick={() => {
                             handleBatchFilterChange(facade.name === "Все фасады" ? "" : facade.name);
