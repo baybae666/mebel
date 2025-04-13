@@ -19,7 +19,7 @@ const Product = () => {
     }, [FacadeID]);
 
     return (
-        <div className='w-screen home'>
+        <div className='w-screen home p-4'>
             {facadeStore._facadeItem.FacadeID && <ProductHeader facade={facadeStore._facadeItem}/>}
             {facadeStore._facadeItem.FacadeID && <Descriptioon facade={facadeStore._facadeItem}/>}
             {facadeStore._facadeItem.FacadeID && <Parameters facade={facadeStore._facadeItem}/>}
