@@ -121,7 +121,7 @@ const FacadeItem = ({ facade }) => {
                 ) : (
                     <button
                         className="w-full max-w-[160px] py-2 px-4 bg-[#054C73] hover:bg-[#033952]
-           text-white rounded-xl font-medium transition-all duration-300
+           text-white rounded-full mb-2 font-medium transition-all duration-300
            text-sm sm:text-base md:text-[15px]
            hover:shadow-md active:scale-95"
                         onClick={handleAddToCart}
