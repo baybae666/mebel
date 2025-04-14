@@ -3,7 +3,7 @@ import React from 'react';
 const About = () => {
     return (
         <div className='w-screen home'>
-            <div className='w-5/6 ms-auto me-auto mb-20 mt-10'>
+            <div className='w-4/5 ms-auto me-auto mb-20 mt-10'>
                 <h1 className="text-4xl text-center lg:text-left md:text-5xl font-bold text-[#054C73] mb-6">О компании</h1>
                 <div className='w-full md:w-4/6 ms-auto me-auto'>
                     <p className='text-[20px] font-normal text-black' style={{ letterSpacing: '1.5px' }}>

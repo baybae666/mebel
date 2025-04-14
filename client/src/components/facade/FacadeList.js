@@ -34,8 +34,8 @@ const FacadeList = () => {
     }, [facadeStore.currentPage]);
 
     return (
-        <div className="w-full flex flex-col mx-auto items-center mt-5 mb-5 bg-[#eee]">
-            <div className="w-full sm:w-[90%] lg:w-[70%] flex flex-wrap gap-4 justify-center">
+        <div className="w-full mx-auto p-4 sm:p-0 bg-[#eee] rounded-xl">
+            <div className="grid grid-cols-1 m-auto md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredFacades.map((facade) => (
                     <FacadeItem key={facade.id} facade={facade}/>
                 ))}

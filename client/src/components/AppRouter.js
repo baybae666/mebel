@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-import {Route, Routes} from "react-router-dom";
+import React, {useContext, useEffect} from 'react';
+import {Route, Routes, useLocation} from "react-router-dom";
 import {adminRoutes, authRoutes, publicRoutes} from "../route";
 import Home from "../pages/Home";
 import Path from "./Path";
@@ -8,6 +8,14 @@ import {observer} from "mobx-react-lite";
 
 const AppRouter = () => {
     const {userStore} = useContext(Context)
+    const location = useLocation()
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
+    }, [location.pathname])
+
     if (userStore.isLoading) {
         return (
             <div className="max-w-2xl mx-auto p-4 md:p-6">

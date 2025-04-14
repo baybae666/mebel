@@ -53,7 +53,7 @@ const FacadeItem = ({ facade }) => {
             className="
         facadeItem
         hover:shadow-lg transition-shadow duration-300
-        w-[90%] sm:w-[236px] md:w-[280px]
+        w-full sm:w-[236px] md:w-[280px]
         h-auto sm:h-[300px] md:h-[350px]
         flex flex-col items-center justify-center
         mb-4 bg-white rounded-[15px] shadow"

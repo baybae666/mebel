@@ -27,7 +27,7 @@ const Facades = () => {
     ]);
 
     return (
-        <div className="w-4/5 mx-auto my-8">
+        <div className="w-full mx-auto my-8">
             {/* Сетка фасадов с Flexbox */}
             <div className="flex flex-wrap justify-center lg:justify-center gap-4">
                 {facades.map((facade, index) => (

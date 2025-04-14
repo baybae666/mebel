@@ -40,7 +40,7 @@ const Catalog = () => {
         <div className="w-4/5 min-h-screen mx-auto pb-24">
             <CatalogSearch/>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#054C73]
-                mb-8 sm:mb-12 text-center sm:text-left">
+                mb-8 sm:mb-20 text-center sm:text-left">
                 Каталог товаров
             </h1>
             <Facades/>
@@ -81,9 +81,11 @@ const Catalog = () => {
                 </div>
             </div>
 
-            <div className="w-full flex flex-col lg:flex-row gap-6">
+            <div className="w-full flex flex-col lg:flex-row gap-4 lg:gap-6">
                 <FilterPanel/>
+                <div className='w-full flex-grow'>
                 <FacadeList/>
+                </div>
             </div>
 
         </div>
