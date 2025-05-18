@@ -79,15 +79,15 @@ const Order = ({order}) => {
                     <div className="space-y-3.5 text-black">
                         <div className="flex items-center gap-2">
                             <UserIcon className="w-5 h-5 text-[#054C73]"/>
-                            <span>{userStore.pickUserId ? selectedUser.Fullname : selectedUser.fullname}</span>
+                            <span>{selectedUser.Fullname}</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <PhoneIcon className="w-5 h-5 text-[#054C73]"/>
-                            <span>{userStore.pickUserId ? selectedUser.Phone : selectedUser.phone}</span>
+                            <span>{selectedUser.Phone}</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <MailIcon className="w-5 h-5 text-blue-500"/>
-                            <span>{userStore.pickUserId ? selectedUser.Email : selectedUser.email}</span>
+                            <span>{selectedUser.Email}</span>
                         </div>
                         <div className="pt-4 mt-4 border-t text-[#054C73]">
                             <div className="flex flex-col justify-between items-center">
