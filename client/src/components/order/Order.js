@@ -10,6 +10,34 @@ import CancelIcon from "../icons/CancelIcon";
 
 const Order = ({order}) => {
     const {orderStore, userStore} = useContext(Context)
+    const [selectedUser, setSelectedUser] = useState(null);
+
+    const loadUsersIfNeeded = async () => {
+    if (userStore.pickUserId === null) {
+      // Если нет выбранного ID — используем текущего пользователя
+      setSelectedUser(userStore.user);
+    } else {
+      // Если пользователей ещё не загружали — загружаем
+      if (userStore.users.length === 0) {
+        await userStore.getAll(); // предполагаем, что метод есть в userStore
+      }
+      updateSelectedUser();
+    }
+  };
+
+  const updateSelectedUser = () => {
+    const user = userStore.users.find(u => u.UserID === userStore.pickUserId);
+    if (user) {
+      setSelectedUser(user);
+    }
+  };
+
+  useEffect(() => {
+    loadUsersIfNeeded();
+    // Следим за длиной массива пользователей
+  }, [userStore.users.length]);
+    
+    
     const updateStatus = async () => {
         await orderStore.updateStatus(order.OrderID, 'Не оформлен')
     }
@@ -51,15 +79,15 @@ const Order = ({order}) => {
                     <div className="space-y-3.5 text-black">
                         <div className="flex items-center gap-2">
                             <UserIcon className="w-5 h-5 text-[#054C73]"/>
-                            <span>{userStore.user.fullname}</span>
+                            <span>{userStore.pickUserId ? selectedUser.Fullname : selectedUser.fullname}</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <PhoneIcon className="w-5 h-5 text-[#054C73]"/>
-                            <span>{userStore.user.phone}</span>
+                            <span>{userStore.pickUserId ? selectedUser.Phone : selectedUser.phone}</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <MailIcon className="w-5 h-5 text-blue-500"/>
-                            <span>{userStore.user.email}</span>
+                            <span>{userStore.pickUserId ? selectedUser.Email : selectedUser.email}</span>
                         </div>
                         <div className="pt-4 mt-4 border-t text-[#054C73]">
                             <div className="flex flex-col justify-between items-center">
