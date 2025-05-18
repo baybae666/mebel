@@ -10,6 +10,10 @@ const OrderConfirm = () => {
     const {orderStore} = useContext(Context)
     const navigate = useNavigate()
     // const checkOrder = () => orderStore.order.OrderID ? navigate(PROFILEROUTER + '/orders)' : ''
+     useEffect(() => {
+    // Сбросить выбранного пользователя при загрузке страницы
+        userStore.onpPickUserId(null);
+    }, []);
 
 
     return (
