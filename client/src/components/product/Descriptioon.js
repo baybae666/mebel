@@ -10,7 +10,7 @@ const Descriptioon = ({facade}) => {
                 </div>
             </div>
 
-            <p className='font-normal text-xl text-black tracking-wide inline-block w-full text-left mt-10'>
+            <p className='font-normal text-xl text-black tracking-wide inline-block w-full text-left mt-10 text-justify'>
                 {facade.Description}
             </p>
         </div>

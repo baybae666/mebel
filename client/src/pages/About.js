@@ -6,7 +6,7 @@ const About = () => {
             <div className='w-4/5 ms-auto me-auto mb-20 mt-10'>
                 <h1 className="text-4xl text-center lg:text-left md:text-5xl font-bold text-[#054C73] mb-6">О компании</h1>
                 <div className='w-full md:w-4/6 ms-auto me-auto'>
-                    <p className='text-[20px] font-normal text-black' style={{ letterSpacing: '1.5px' }}>
+                    <p className='text-[20px] font-normal text-black text-justify' style={{ letterSpacing: '1.5px' }}>
                         Компания "ТехноФасад" успешно работает на рынке мебельного производства более 10 лет,
                         зарекомендовав себя как надежный поставщик качественных мебельных фасадов, которые радуют клиентов не только
                         внешним видом, но и функциональностью.
@@ -25,7 +25,7 @@ const About = () => {
                     </p>
 
                     <h2 className="text-[32px] font-bold text-[#054C73] mb-3">Что мы предлагаем</h2>
-                    <ul className='list-disc pl-6 text-[20px] font-normal text-black' style={{ letterSpacing: '2px' }}>
+                    <ul className='list-disc pl-6 text-[20px] font-normal text-black text-justify' style={{ letterSpacing: '2px' }}>
                         <li>Индивидуальный подход. Вы сами выбираете дизайн, размеры и цвет, чтобы ваши фасады гармонично вписались в интерьер;</li>
                         <li>Высокое качество. Собственное производство и использование высококачественных материалов от проверенных поставщиков обеспечивают надежность и долговечность изделий;</li>
                         <li>Услуги установки. Для частных клиентов мы не только произведем фасады, но и предоставим профессиональную установку;</li>
@@ -33,7 +33,7 @@ const About = () => {
                     </ul>
 
                     <h2 className="text-[32px] font-bold text-[#054C73] mb-3">Почему выбирают нас</h2>
-                    <ul className='list-disc pl-6 text-[20px] font-normal text-black' style={{ letterSpacing: '2px' }}>
+                    <ul className='list-disc pl-6 text-[20px] font-normal text-black text-justify' style={{ letterSpacing: '2px' }}>
                         <li>Более 10 лет на рынке;</li>
                         <li>100% гарантия на всю продукцию до 18 месяцев;</li>
                         <li>Выполнение заказов по индивидуальному макету, составленному с учетом всех предпочтений заказчика;</li>
@@ -44,7 +44,7 @@ const About = () => {
                     </ul>
 
                     <h2 className="text-[32px] font-bold text-[#054C73] mb-3">Наша компания включает в себя</h2>
-                    <ul className='list-disc pl-6 text-[20px] font-normal text-black' style={{ letterSpacing: '2px' }}>
+                    <ul className='list-disc pl-6 text-[20px] font-normal text-black text-justify' style={{ letterSpacing: '2px' }}>
                         <li>Удобный офис для консультации покупателей</li>
                         <li>Современное производственное оборудование;</li>
                         <li>Надежных поставщиков качественных материалов и фурнитуры;</li>

@@ -20,7 +20,7 @@ const CartItem = ({ cartItem, onQuantityChange, photo, onRemove, minus}) => {
             <div className="h-1/2 flex-1 self-center text-center sm:text-left">
                 <h3 className="text-2xl font-semibold text-[#054C73]">{Facade.FacadeName}</h3>
                 <p className="text-lg text-gray-600 mt-2">
-                    {PricePerUnit.toLocaleString()} руб.
+                    от {PricePerUnit.toLocaleString()} руб.
                 </p>
             </div>
             <div className="flex items-center self-center justify-center sm:justify-start space-x-4">
@@ -40,7 +40,7 @@ const CartItem = ({ cartItem, onQuantityChange, photo, onRemove, minus}) => {
             </div>
 
             <div className='text-xl font-semibold self-center'>
-                <span className='text-base font-medium'>Стоимость</span> <br/>
+                <span className='text-base font-medium'>Стоимость от</span> <br/>
                 {Quantity * PricePerUnit} руб.
             </div>
 

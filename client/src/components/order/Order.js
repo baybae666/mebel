@@ -13,6 +13,7 @@ const Order = ({order}) => {
     const updateStatus = async () => {
         await orderStore.updateStatus(order.OrderID, 'Не оформлен')
     }
+
     return (
         <div className="bg-white p-6 md:p-8 mx-auto max-w-4xl ">
             {/* Шапка заказа */}
@@ -62,7 +63,7 @@ const Order = ({order}) => {
                         </div>
                         <div className="pt-4 mt-4 border-t text-[#054C73]">
                             <div className="flex flex-col justify-between items-center">
-                                <span className="font-bold">Итого:</span>
+                                <span className="font-bold">Итого от:</span>
                                 <span className="text-2xl font-bold text-black">
                             {order.TotalPrice.toLocaleString()} руб.
                         </span>

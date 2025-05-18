@@ -47,7 +47,7 @@ const Catalog = () => {
 
             <div  className='w-5/6 flex sm:justify-around justify-center h-[50px] mt-12 mb-7 ms-auto'>
                 <span className='hidden sm:block font-semibold text-base sm:text-lg'>
-      {filteredFacades.length || facadeStore._facdeList.length} товаров
+      {filteredFacades.length || 0} товаров
     </span>
                 <div className="relative w-full sm:w-60">
                     <div onClick={handleDropdownToggle}

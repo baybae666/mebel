@@ -34,7 +34,7 @@ const ProductHeader = ({ facade }) => {
 
                 <div className='w-full h-1/4 flex flex-wrap items-center justify-around mb-10'>
                     <div className='w-1/2 h-1/2 flex flex-col justify-center'>
-                        <span className='font-normal text-xl text-black tracking-[5%]'>Цена за шт.</span>
+                        <span className='font-normal text-xl text-black tracking-[5%]'>Цена от</span>
                         <span className='font-medium text-xl text-black tracking-[5%]'>
                             <span className='font-semibold text-3xl text-black tracking-[5%]'>{facade.Price}</span> руб.
                         </span>
@@ -59,7 +59,7 @@ const ProductHeader = ({ facade }) => {
 
                 <div className='w-full'>
                     <p className='text-black font-normal text-xl tracking-wide mb-7'>Краткие характеристики:</p>
-                    <p className='text-black font-normal text-xl tracking-wide mb-4'>Материал:
+                    <p className='text-black font-normal text-xl tracking-wide mb-4 '>Материал:
                         ........................................ {facade.Material}</p>
                     <p className='text-black font-normal text-xl tracking-wide mb-4'>Серия:
                         ................................................ {facade.Batch}</p>

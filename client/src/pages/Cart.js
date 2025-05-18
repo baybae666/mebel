@@ -12,6 +12,7 @@ const Cart = observer(() => {
     useEffect(() => {
         cartStore.fetchCart();
     }, [cartStore.fetchCart]);
+
     // Функция для изменения количества товара
     const handleQuantityChange = (id, newQuantity) => {
         if (newQuantity < 1) return;
@@ -41,7 +42,7 @@ const Cart = observer(() => {
     return (
         <div className="mx-auto py-6 w-4/5">
             <h1 className="text-2xl sm:text-4xl font-bold text-[#054C73] mb-6 text-left">
-                Оформление заказа
+                Корзина
             </h1>
 
             <div className="space-y-4">
@@ -67,7 +68,7 @@ const Cart = observer(() => {
             {cartStore.cart.length > 0 && (
                 <div className="mt-8 flex flex-col items-center">
                     <div className="flex items-center justify-between w-full max-w-md text-xl font-semibold mb-4">
-                        <span>Итого:</span>
+                        <span>Итого от:</span>
                         <span>{cartStore.totalPrice.toLocaleString()} руб.</span>
                     </div>
 

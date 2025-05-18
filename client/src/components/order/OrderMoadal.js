@@ -24,9 +24,9 @@ const OrderMoadal = ({onClose, id}) => {
                         <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
                             Заказ оформлен!
                         </h2>
-                        <p className="text-gray-600 md:text-lg leading-relaxed">
+                        {!userStore.user.isAdmin && <p className="text-gray-600 md:text-lg leading-relaxed">
                             Наш менеджер свяжется с вами для подтверждения деталей заказа
-                        </p>
+                        </p>}
                     </div>
 
                     {/* Кнопка подтверждения */}

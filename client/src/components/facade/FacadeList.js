@@ -35,7 +35,7 @@ const FacadeList = () => {
 
     return (
         <div className="w-full mx-auto p-4 sm:p-0 bg-[#eee] rounded-xl">
-            <div className="grid grid-cols-1 m-auto md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid w-4/5 grid-cols-1 m-auto md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredFacades.map((facade) => (
                     <FacadeItem key={facade.id} facade={facade}/>
                 ))}

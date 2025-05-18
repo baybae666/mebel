@@ -24,7 +24,7 @@ const Product = () => {
             {facadeStore._facadeItem.FacadeID && <Descriptioon facade={facadeStore._facadeItem}/>}
             {facadeStore._facadeItem.FacadeID && <Parameters facade={facadeStore._facadeItem}/>}
 
-            <p className='font-normal text-xl text-black tracking-wider block w-[70%] my-20 opacity-60 me-auto ms-auto'>
+            <p className='font-normal text-xl text-black tracking-wider block w-[70%] my-20 opacity-60 me-auto ms-auto text-justify'>
                 Обратите внимание! Вся информация о товарах, размещенная на сайте, не является публичной офертой,
                 определяемой положениями Части 2
                 Статьи 437 Гражданского кодекса РФ. Производители товаров вправе вносить изменения в технические

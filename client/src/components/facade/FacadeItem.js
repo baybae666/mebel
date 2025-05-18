@@ -83,7 +83,7 @@ const FacadeItem = ({ facade }) => {
                 <span
                     className="font-medium text-lg sm:text-xl text-[#070707]"
                 >
-          {facade.Price} руб/шт
+          от {facade.Price} руб
         </span>
 
 

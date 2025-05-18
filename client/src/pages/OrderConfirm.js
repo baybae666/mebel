@@ -11,6 +11,7 @@ const OrderConfirm = () => {
     const navigate = useNavigate()
     // const checkOrder = () => orderStore.order.OrderID ? navigate(PROFILEROUTER + '/orders)' : ''
 
+
     return (
         <div className='flex min-h-[70vh] h-fit flex-col w-4/5 m-auto justify-center-center py-8'>
             <h1 className='text-4xl md:text-5xl font-bold text-[#054C73] mb-6 text-center lg:text-left'>Оформление заказа</h1>
