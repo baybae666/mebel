@@ -15,6 +15,7 @@ const corsOptions ={
     credentials:true,
     optionSuccessStatus:200
 }
+
 app.use(cors(corsOptions));
 app.use(cookieParser())
 app.use(express.json())

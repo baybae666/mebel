@@ -25,7 +25,10 @@ const UserList = observer(() => {
                         <UserItem
                             key={user.UserID}
                             user={user}
-                            onSelect={() => navigate(PROFILEROUTER + '/orders' + '/' + user.UserID)}
+                            onSelect={() => {
+                                userStore.onpPickUserId(user.UserID);
+                                navigate(PROFILEROUTER + '/orders' + '/' + user.UserID)
+                            }}
                             isSelected={userStore.pickUserId === user.UserID}
                         />
                     ))
