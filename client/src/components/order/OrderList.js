@@ -13,6 +13,18 @@ const OrderList = () => {
     const [orders, setOrders] = useState([])
     const [isStatusUpdate, setIsStatusUpdate] = useState(false)
 
+    const onCheckUser = () => {
+        if (id === userStore.user.UserID) {
+            userStore.onpPickUserId(null)
+        }
+    }
+
+    useEffect(() => {
+        if (!userStore.isLoading) {
+            onCheckUser()
+        }
+    }, [id])
+
     const onStatusUpdate = () => setIsStatusUpdate(true)
     const getOrders = async () => {
         await orderStore.getOrderByUserId(id).then(res => setOrders(res))
