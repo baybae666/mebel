@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 import {PROFILEROUTER} from "../utils/consts";
 
 const OrderConfirm = () => {
-    const {orderStore} = useContext(Context)
+    const {orderStore, userStore} = useContext(Context)
     const navigate = useNavigate()
     // const checkOrder = () => orderStore.order.OrderID ? navigate(PROFILEROUTER + '/orders)' : ''
      useEffect(() => {
