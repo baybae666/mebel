@@ -1,7 +1,7 @@
 const path = require('path');
 const { Facade, User} = require('../models/model');
 const uuid = require('uuid');
-const ApiError = require("../Error/ApiError");
+const ApiError = require("../error/ApiError");
 
 class FacadeController {
     async create(req, res) {
