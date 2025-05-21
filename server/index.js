@@ -11,7 +11,7 @@ const cookieParser = require('cookie-parser')
 const PORT = process.env.PORT || 3000
 const errorMiddleware = require('./middleware/errorMiddleware');
 const corsOptions ={
-    origin:'https://mebel-4gzr-git-main-ns-projects-58d47381.vercel.app/',
+    origin:process.env.CLIENT_URL,
     credentials:true,
     optionSuccessStatus:200
 }
