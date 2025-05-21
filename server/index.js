@@ -11,7 +11,7 @@ const cookieParser = require('cookie-parser')
 const PORT = process.env.PORT || 3000
 const errorMiddleware = require('./middleware/errorMiddleware');
 const corsOptions ={
-    origin:'http://localhost:3000',
+    origin:'https://mebel-4gzr-git-main-ns-projects-58d47381.vercel.app/',
     credentials:true,
     optionSuccessStatus:200
 }
@@ -30,7 +30,7 @@ const server = require('http').createServer(app)
 const start = async () => {
     try {
         await db.authenticate()
-        await db.sync({alter: true})
+        await db.sync()
         server.listen(PORT, () => console.log(`Server started on port ${PORT}`))
     } catch (e) {
         console.log(e)
