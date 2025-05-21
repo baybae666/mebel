@@ -43,7 +43,7 @@ class UserController {
             res.cookie('refreshToken', tokens.refreshToken, {
                 maxAge: 10 * 24 * 60 * 60 * 1000,
                 httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
+                secure: true,
                 sameSite: 'strict',
             });
             return res.json({ user: { id: user.UserID, fullname: user.Fullname, email: user.Email,phone: user.Phone, isAdmin: user.IsAdmin }, tokens });
@@ -73,7 +73,7 @@ class UserController {
             res.cookie('refreshToken', tokens.refreshToken, {
                 maxAge: 10 * 24 * 60 * 60 * 1000,
                 httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
+                secure: true,
                 sameSite: 'strict',
             });
             return res.json({ user: { id: user.UserID, fullname: user.Fullname, email: user.Email, phone: user.Phone, isAdmin: user.IsAdmin }, tokens });
@@ -138,7 +138,7 @@ class UserController {
             res.cookie('refreshToken', tokens.refreshToken, {
                 maxAge: 10 * 24 * 60 * 60 * 1000,
                 httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
+                secure: true,
                 sameSite: 'strict',
             });
 
