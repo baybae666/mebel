@@ -40,7 +40,12 @@ class UserController {
             const tokens = tokenService.generateTokens({ id: user.UserID, fullname: user.Fullname, Email: user.Email, Phone: user.Phone, isAdmin: user.IsAdmin });
             await tokenService.saveToken(user.UserID, tokens.refreshToken);
 
-            res.cookie('refreshToken', tokens.refreshToken, { maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true});
+            res.cookie('refreshToken', tokens.refreshToken, {
+                maxAge: 10 * 24 * 60 * 60 * 1000,
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'strict',
+            });
             return res.json({ user: { id: user.UserID, fullname: user.Fullname, email: user.Email,phone: user.Phone, isAdmin: user.IsAdmin }, tokens });
         } catch (e) {
             next(ApiError.badRequest(e.message));
@@ -65,7 +70,12 @@ class UserController {
             const tokens = tokenService.generateTokens({ id: user.UserID, fullname: user.Fullname, Email: user.Email, Phone: user.Phone, isAdmin: user.IsAdmin });
             await tokenService.saveToken(user.UserID, tokens.refreshToken);
 
-            res.cookie('refreshToken', tokens.refreshToken, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true });
+            res.cookie('refreshToken', tokens.refreshToken, {
+                maxAge: 10 * 24 * 60 * 60 * 1000,
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'strict',
+            });
             return res.json({ user: { id: user.UserID, fullname: user.Fullname, email: user.Email, phone: user.Phone, isAdmin: user.IsAdmin }, tokens });
         } catch (e) {
             next(ApiError.badRequest(e.message));
@@ -125,7 +135,12 @@ class UserController {
             const tokens = tokenService.generateTokens({ id: user.UserID, fullname: user.Fullname, Email: user.Email, Phone: user.Phone, isAdmin: user.IsAdmin });
 
             await tokenService.saveToken(user.UserID, tokens.refreshToken);
-            res.cookie('refreshToken', tokens.refreshToken, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true });
+            res.cookie('refreshToken', tokens.refreshToken, {
+                maxAge: 10 * 24 * 60 * 60 * 1000,
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'strict',
+            });
 
             return res.json({ user: { id: user.UserID, fullname: user.Fullname, email: user.Email, phone: user.Phone, isAdmin: user.IsAdmin }, tokens });
         } catch (e) {
