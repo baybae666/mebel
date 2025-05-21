@@ -97,7 +97,7 @@ const FacadeSection = () => {
                     </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                    {facadeStore.searchFacades().map((facade) => (
+                    {dynamicFacades.map((facade) => (
                         <FacadeTableItem key={facade.FacadeID} facade={facade}/>
                     ))}
                     </tbody>
