@@ -1,5 +1,5 @@
 const { User, Order} = require('../models/model');
-const ApiError = require('C:/Users/nasty/WebstormProjects/mebel/server/error/ApiError.js');
+const ApiError = require('../Error/ApiError');
 const bcrypt = require('bcrypt');
 const tokenService = require('../services/tokenService'); // Создать tokenService
 const { validationResult } = require('express-validator');

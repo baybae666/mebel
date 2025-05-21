@@ -1,5 +1,5 @@
 const { Cart, CartDetail, Facade } = require('../models/model');
-const ApiError = require('../error/ApiError');
+const ApiError = require('../Error/ApiError');
 
 class CartController {
     // Получить содержимое корзины

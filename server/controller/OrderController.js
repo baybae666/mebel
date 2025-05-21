@@ -1,4 +1,4 @@
-const ApiError = require('../error/ApiError');
+const ApiError = require('../Error/ApiError');
 const {CartDetail, Order, OrderDetail} = require('../models/model');
 class OrderController {
     async createOrderByBasketId(req, res, next) {

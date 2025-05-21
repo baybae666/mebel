@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { Token } = require('../models/model'); // Предполагается, что вы используете Sequelize и есть модель Token в БД
-const ApiError = require('../error/ApiError');
+const ApiError = require('../Error/ApiError');
 
 class TokenService {
     // Генерация токенов (access и refresh)

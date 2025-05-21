@@ -1,6 +1,6 @@
 const {OrderDetail} = require("../models/model");
 const facadeController = require('./FacadeConntroller')
-const ApiError = require('../error/ApiError');
+const ApiError = require('../Error/ApiError');
 class OrderProductController {
 
     // Объединенные методы
