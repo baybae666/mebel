@@ -41,10 +41,12 @@ class UserController {
             await tokenService.saveToken(user.UserID, tokens.refreshToken);
 
             res.cookie('refreshToken', tokens.refreshToken, {
-                maxAge: 10 * 24 * 60 * 60 * 1000,
-                httpOnly: true,
-                secure: true,
+                maxAge: 10 * 24 * 60 * 60 * 1000, // 10 дней
+                httpOnly: true,                  // недоступна из JS
+                secure: true,                    // только по HTTPS
+                sameSite: 'none',                // обязательно для cross-site cookies
             });
+
             return res.json({ user: { id: user.UserID, fullname: user.Fullname, email: user.Email,phone: user.Phone, isAdmin: user.IsAdmin }, tokens });
         } catch (e) {
             next(ApiError.badRequest(e.message));
@@ -70,10 +72,12 @@ class UserController {
             await tokenService.saveToken(user.UserID, tokens.refreshToken);
 
             res.cookie('refreshToken', tokens.refreshToken, {
-                maxAge: 10 * 24 * 60 * 60 * 1000,
-                httpOnly: true,
-                secure: true,
+                maxAge: 10 * 24 * 60 * 60 * 1000, // 10 дней
+                httpOnly: true,                  // недоступна из JS
+                secure: true,                    // только по HTTPS
+                sameSite: 'none',                // обязательно для cross-site cookies
             });
+
             return res.json({ user: { id: user.UserID, fullname: user.Fullname, email: user.Email, phone: user.Phone, isAdmin: user.IsAdmin }, tokens });
         } catch (e) {
             next(ApiError.badRequest(e.message));
@@ -134,10 +138,12 @@ class UserController {
 
             await tokenService.saveToken(user.UserID, tokens.refreshToken);
             res.cookie('refreshToken', tokens.refreshToken, {
-                maxAge: 10 * 24 * 60 * 60 * 1000,
-                httpOnly: true,
-                secure: true,
+                maxAge: 10 * 24 * 60 * 60 * 1000, // 10 дней
+                httpOnly: true,                  // недоступна из JS
+                secure: true,                    // только по HTTPS
+                sameSite: 'none',                // обязательно для cross-site cookies
             });
+
 
             return res.json({ user: { id: user.UserID, fullname: user.Fullname, email: user.Email, phone: user.Phone, isAdmin: user.IsAdmin }, tokens });
         } catch (e) {
