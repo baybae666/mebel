@@ -111,6 +111,7 @@ class FacadeController {
     async delete(req, res) {
         try {
             const {facadeId} = req.body
+
             const deletedApplicant = await Facade.destroy({ where: { FacadeID: facadeId } });
 
             if (!deletedApplicant) {
