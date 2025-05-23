@@ -87,7 +87,7 @@ export default class FacadeStore {
     searchFacades() {
         return this._facdeList.filter(facade => this._searchQuery
                 ? facade.FacadeName.toLowerCase().includes(this._searchQuery)
-                : true)
+                : true).sort((a, b) => a.FacadeID - b.FacadeID)
     }
 
     filterFacades() {

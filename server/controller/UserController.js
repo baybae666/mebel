@@ -44,7 +44,6 @@ class UserController {
                 maxAge: 10 * 24 * 60 * 60 * 1000,
                 httpOnly: true,
                 secure: true,
-                sameSite: 'strict',
             });
             return res.json({ user: { id: user.UserID, fullname: user.Fullname, email: user.Email,phone: user.Phone, isAdmin: user.IsAdmin }, tokens });
         } catch (e) {
@@ -74,7 +73,6 @@ class UserController {
                 maxAge: 10 * 24 * 60 * 60 * 1000,
                 httpOnly: true,
                 secure: true,
-                sameSite: 'strict',
             });
             return res.json({ user: { id: user.UserID, fullname: user.Fullname, email: user.Email, phone: user.Phone, isAdmin: user.IsAdmin }, tokens });
         } catch (e) {
@@ -139,7 +137,6 @@ class UserController {
                 maxAge: 10 * 24 * 60 * 60 * 1000,
                 httpOnly: true,
                 secure: true,
-                sameSite: 'strict',
             });
 
             return res.json({ user: { id: user.UserID, fullname: user.Fullname, email: user.Email, phone: user.Phone, isAdmin: user.IsAdmin }, tokens });
