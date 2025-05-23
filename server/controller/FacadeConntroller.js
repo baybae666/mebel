@@ -2,6 +2,15 @@ const path = require('path');
 const { Facade, User} = require('../models/model');
 const uuid = require('uuid');
 const ApiError = require("../Error/ApiError");
+const cloudinary = require('cloudinary').v2;
+const fs = require('fs');
+
+cloudinary.config({
+    cloud_name: 'your_cloud_name',
+    api_key: '253861488465722',
+    api_secret: 'Bc55vOLUPB_2en93XhBB1GmH7sY'
+});
+
 
 class FacadeController {
     async create(req, res) {
@@ -12,8 +21,11 @@ class FacadeController {
             // Генерация уникального имени для файла с фото
             let fileName = uuid.v4() + ".png";
 
+            const tmpPath = path.resolve(__dirname, '..', 'static', fileName)
             // Сохранение файла в директорию 'static'
-            PhotoURL.mv(path.resolve(__dirname, '..', 'static', fileName));
+            await PhotoURL.mv(tmpPath);
+            const result = await cloudinary.uploader.upload(tmpPath);
+            fs.unlinkSync(tmpPath);
 
             const facade = await Facade.create({
                 FacadeName,
@@ -27,7 +39,7 @@ class FacadeController {
                 Guarantee,
                 Price,
                 Description,
-                PhotoURL: fileName
+                PhotoURL: result.secure_url
             });
 
             return res.json(facade);

@@ -58,7 +58,7 @@ const OrderItem = ({id, order}) => {
                             <img
                                 key={orderDetail.OrderDetailID}
                                 alt={orderDetail.FacadeName}
-                                src={process.env.REACT_APP_API_URL + orderDetail.PhotoURL}
+                                src={orderDetail.PhotoURL}
                                 className="w-12 h-18 object-cover rounded border border-gray-200"
                             />
                         ))}

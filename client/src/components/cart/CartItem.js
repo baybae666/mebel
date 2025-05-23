@@ -10,7 +10,7 @@ const CartItem = ({ cartItem, onQuantityChange, photo, onRemove, minus}) => {
             className="flex w-4/5 m-auto relative bg-white shadow-lg flex-col pt-2 px-10 sm:flex-row items-center rounded-xl sm:items-start space-y-4 sm:space-y-0 sm:space-x-6 border-b pb-6">
             <div className="w-32 h-full p-2 sm:w-40 sm:h-56 rounded object-cover">
                 <img
-                    src={process.env.REACT_APP_API_URL + photo}
+                    src={photo}
                     alt={Facade.FacadeName}
                     className="w-full h-full sm:w-40 sm:h-56 rounded object-cover"
                 />

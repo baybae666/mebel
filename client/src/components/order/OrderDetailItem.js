@@ -11,7 +11,7 @@ const OrderDetailItem = ({orderDetail}) => {
             {/* Изображение */}
             <div className="relative w-full min-w-[128px] sm:w-32 overflow-hidden rounded-xl ">
                 <img
-                    src={process.env.REACT_APP_API_URL + orderDetail.PhotoURL}
+                    src={orderDetail.PhotoURL}
                     alt={orderDetail.FacadeName}
                     className="w-full h-full object-cover transition-transform group-hover:scale-105"
                 />

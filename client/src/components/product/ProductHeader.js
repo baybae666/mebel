@@ -24,7 +24,7 @@ const ProductHeader = ({ facade }) => {
         <div className='w-full sm:w-[70%] lg:w-[70%] h-auto flex flex-col sm:flex-row justify-between sm:gap-8 mx-auto mt-20'>
             <div className='w-full sm:w-[47%] lg:w-[47%] h-full border rounded-[20px] flex justify-center items-center bg-white shadow-lg p-5'>
                 <img className='w-full sm:w-[303px] h-auto sm:h-4/5'
-                     src={process.env.REACT_APP_API_URL + facade.PhotoURL} alt={facade.Name} />
+                     src={facade.PhotoURL} alt={facade.Name} />
             </div>
 
             <div className='w-full sm:w-[47%] lg:w-[47%] h-full flex flex-col justify-start items-center mt-5 sm:mt-0'>

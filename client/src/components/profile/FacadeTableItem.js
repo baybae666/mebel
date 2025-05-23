@@ -20,7 +20,7 @@ const FacadeTableItem = ({facade}) => {
 
             <td className="px-4 py-4">
                 <img
-                    src={process.env.REACT_APP_API_URL + facade.PhotoURL}
+                    src={facade.PhotoURL}
                     className="w-12 h-12 object-cover rounded-md"
                     alt={facade.FacadeName}
                 />

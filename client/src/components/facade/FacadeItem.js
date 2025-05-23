@@ -65,7 +65,7 @@ const FacadeItem = ({ facade }) => {
                 <img
                     loading="lazy"
                     className="facade-img h-full w-full rounded-[5px] shadow object-cover hover:scale-105 transition-transform duration-300 cursor-pointer"
-                    src={process.env.REACT_APP_API_URL + facade.PhotoURL}
+                    src={facade.PhotoURL}
                     alt={facade.FacadeName}
                 />
             </div>
